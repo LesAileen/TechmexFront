@@ -1,40 +1,64 @@
-import { useState, useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import headerImg from "../../assets/img/prueba.png";
-import Tablaproductos from "../products/Tablaproductos";
-import SeleccionCategorias from "../categorias/SeleccionCategoria";
-import { ArrowRightCircle } from "react-bootstrap-icons";
-import "animate.css";
-import TrackVisibility from "react-on-screen";
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import headerImg from '../../assets/img/prueba.png';
+import TablaProductos from '../products/Tablaproductos';
+import BotonCategoria from '../categorias/BotonCategoria';
+import { ArrowRightCircle } from 'react-bootstrap-icons';
+import 'animate.css';
+import TrackVisibility from 'react-on-screen';
+import PedidoTabla from '../pedido/PedidoTabla';
 
-export const Banner = () => {
+const Banner = () => {
+  const [pedidos, setPedidos] = useState([]);
+
+  useEffect(() => {
+    // Lógica para obtener los datos de los pedidos
+    // y guardarlos en el estado "pedidos"
+  }, []);
+
+  const agregarPedido = (producto) => {
+    setPedidos([...pedidos, producto]);
+  };
+
+  const eliminarPedido = (index) => {
+    const nuevosPedidos = [...pedidos];
+    nuevosPedidos.splice(index, 1);
+    setPedidos(nuevosPedidos);
+  };
+  
   return (
     <section className="banner" id="home">
       <Container fluid>
-        <Row className="aligh-items-center">
-          <Col xs={12} md={6} xl={7}>
-            <TrackVisibility once>
-              <Tablaproductos></Tablaproductos>
-            </TrackVisibility>
+        <Row className="align-items-stretch">
+          <Col xs={12} md={6} xl={4} className="d-flex">
+            <div className="flex-fill">
+              <TrackVisibility once>
+                <TablaProductos agregarPedido={agregarPedido} eliminarPedido={eliminarPedido} />
+              </TrackVisibility>
+            </div>
           </Col>
-          <Col xs={12} md={6} xl={5}>
-            <TrackVisibility once>
-              {({ isVisible }) => (
-                <div
-                  className={
-                    isVisible ? "animate__animated animate__zoomIn" : ""
-                  }
-                >
-                  <img id="imagenPrincipal" src={headerImg} alt="Header Img" />
-                </div>
-              )}
-            </TrackVisibility>
+          <Col xs={12} md={6} xl={4} className="d-flex">
+            <div className="flex-fill">
+              <TrackVisibility once>
+                <PedidoTabla pedidos={pedidos} eliminarPedido={eliminarPedido} />
+              </TrackVisibility>
+            </div>
+          </Col>
+          <Col xs={12} md={6} xl={4} className="text-center d-flex">
+            <div className="flex-fill">
+              <TrackVisibility once>
+                {({ isVisible }) => (
+                  <div className={isVisible ? 'animate__animated animate__zoomIn' : ''}>
+                    <img id="imagenPrincipal" src={headerImg} alt="Header Img" />
+                  </div>
+                )}
+              </TrackVisibility>
+            </div>
           </Col>
         </Row>
       </Container>
     </section>
   );
 };
+
 export default Banner;
-
-

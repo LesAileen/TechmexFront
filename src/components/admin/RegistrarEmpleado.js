@@ -24,7 +24,7 @@ const CssTextField = styled(TextField)({
   },
 });
 
-function Register() {
+function RegistrarEmpleado() {
   const [email, setEmail] = useState("");
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
@@ -44,6 +44,7 @@ function Register() {
       url.searchParams.append("email", email);
       url.searchParams.append("user", user);
       url.searchParams.append("password", password);
+      url.searchParams.append("rol", userRole);
 
       const response = await fetch(url, {
       method: "POST",
@@ -55,6 +56,7 @@ function Register() {
         setUser("");
         setPassword("");
         setRepeatPassword("");
+        setUserRole("");
       } else {
         alert("Error en el registro");
       }
@@ -151,6 +153,14 @@ function Register() {
                 color: "white",
               }}
             />
+            <div>
+              <label>Rol:</label>
+              <select value={userRole} onChange={(e) => setUserRole(e.target.value)} required>
+                <option value="">Seleccionar rol</option>
+                <option value="USER">User</option>
+                <option value="ADMIN">Admin</option>
+              </select>
+            </div>
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Registarse
             </Button>
@@ -162,4 +172,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegistrarEmpleado;

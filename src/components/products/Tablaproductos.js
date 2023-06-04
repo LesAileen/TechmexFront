@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import BotonCategoria from '../categorias/BotonCategoria';
-import ImagenTacoPrueba from '../../assets/img/Taco.png'
+import ImagenTacoPrueba from '../../assets/img/Taco.png';
 
-const TablaProductos = () => {
+const TablaProductos = ({ agregarPedido }) => {
   const [productos, setProductos] = useState([]);
   const [filtroRol, setFiltroRol] = useState("MENU");
 
@@ -21,12 +21,16 @@ const TablaProductos = () => {
     }
   };
 
-  const filtrarProductosPorRol = rol => {
+  const filtrarProductosPorRol = (rol) => {
     setFiltroRol(rol);
   };
 
+  const agregarProductoPedido = (producto) => {
+    agregarPedido(producto);
+  };
+
   const productosFiltrados = filtroRol
-    ? productos.filter(producto => producto.categoriaRol === filtroRol)
+    ? productos.filter((producto) => producto.categoriaRol === filtroRol)
     : productos;
 
   return (
@@ -47,18 +51,37 @@ const TablaProductos = () => {
           </tr>
         </thead>
         <tbody>
-          {productosFiltrados.map(producto => (
+          {productosFiltrados.map((producto) => (
             <tr key={producto.id}>
               <td>{producto.nombre}</td>
               <td>{producto.precio}</td>
-                <td>
-                  <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <img src={ImagenTacoPrueba} alt={producto.nombre} style={{ width: '100px', height: '100px' }} />
-                      <div style={{ marginLeft: '10px', display: 'flex', alignItems: 'center' }}>
-                        <button style={{ marginRight: '5px', borderRadius: '50%', width: '30px', height: '30px', backgroundColor: 'lightgreen', border: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>+</button>
-                        <button style={{ borderRadius: '50%', width: '30px', height: '30px', backgroundColor: 'lightcoral', border: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>-</button>
-                      </div>
+              <td>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img
+                    src={ImagenTacoPrueba}
+                    alt={producto.nombre}
+                    style={{ width: '100px', height: '100px', animation: 'none' }}
+                  />
+                  <div style={{ marginLeft: '10px', display: 'flex', alignItems: 'center' }}>
+                    <button
+                      style={{
+                        marginRight: '5px',
+                        borderRadius: '50%',
+                        width: '30px',
+                        height: '30px',
+                        backgroundColor: 'lightgreen',
+                        border: 'none',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                      onClick={() => agregarProductoPedido(producto)}
+                    >
+                      +
+                    </button>
+
                   </div>
+                </div>
               </td>
             </tr>
           ))}

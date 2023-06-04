@@ -6,6 +6,8 @@ import App from './App';
 import Home from "./components/home/Home";
 import Register from "./components/register/Register";
 import Login from "./components/login/Login";
+import RegistrarEmpleado from "./components/admin/RegistrarEmpleado";
+import CrearPrducto from "./components/products/CrearProducto";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -17,6 +19,8 @@ root.render(
       <Route path="/App" element={<Home />}></Route>
       <Route path="/Register" element={<Register />}></Route>
       <Route path="/Login" element={<Login />}></Route>
+      <Route path="/Añadir productos" element={<CrearPrducto />}></Route>
+      <Route path="/Registar empleados" element={<RegistrarEmpleado />}></Route>
     </Routes>
   </BrowserRouter>
 );

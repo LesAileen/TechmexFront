@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 import carrito from "../../assets/img/CarritoDeLaCompra.jpg";
 
-const pages = ["Opcion Admin", "", ""];
+const pages = ["Registar empleados", "Facturas", "Añadir Productos"];
 
 const settings = ["Profile", "Account", "Wallet", "Exit"];
 
