@@ -102,7 +102,7 @@ function Facturas() {
   }, [fechaInicial, fechaFinal]);
 
   return (
-    <div>
+    <div className="facturas-container">
       <Navbar />
 
       <div className="container">
