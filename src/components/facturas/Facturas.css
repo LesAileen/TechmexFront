@@ -1,0 +1,59 @@
+.container {
+    margin: 20px 0;
+  }
+  
+  .table-container {
+    max-height: 400px; /* Altura máxima de la tabla */
+    overflow-y: auto; /* Habilitar desplazamiento vertical */
+  }
+  
+  .table {
+    border-collapse: collapse;
+  }
+  
+  .cell {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .filter label {
+    margin-right: 10px;
+  }
+  
+  .filter input,
+  .filter select {
+    padding: 5px;
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pagination ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .pagination li {
+    margin-right: 5px;
+  }
+  
+  .pagination button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  
+  .pagination button.active {
+    background-color: #ddd;
+  }
