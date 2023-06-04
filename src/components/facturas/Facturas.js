@@ -181,26 +181,47 @@ function Facturas() {
 }
 
 const Pagination = ({ facturasPerPage, totalFacturas, paginate, currentPage }) => {
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalFacturas / facturasPerPage); i++) {
-    pageNumbers.push(i);
-  }
-
-  return (
-    <ul>
-      {pageNumbers.map((number) => (
-        <li key={number}>
-          <button
-            className={currentPage === number ? "active" : ""}
-            onClick={() => paginate(number)}
-          >
-            {number}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-};
-
-export default Facturas;
-
+    const pageNumbers = [];
+    const maxPageNumbers = 5; // Número máximo de números de página a mostrar
+  
+    for (let i = 1; i <= Math.ceil(totalFacturas / facturasPerPage); i++) {
+      pageNumbers.push(i);
+    }
+  
+    let paginationItems = pageNumbers;
+  
+    if (pageNumbers.length > maxPageNumbers) {
+      const minPage = Math.max(currentPage - Math.floor(maxPageNumbers / 2), 1);
+      const maxPage = minPage + maxPageNumbers - 1;
+      paginationItems = pageNumbers.slice(minPage - 1, maxPage);
+    }
+  
+    return (
+      <ul>
+        {currentPage > 1 && (
+          <li>
+            <button onClick={() => paginate(currentPage - 1)}>{"<"}</button>
+          </li>
+        )}
+  
+        {paginationItems.map((number) => (
+          <li key={number}>
+            <button
+              className={currentPage === number ? "active" : ""}
+              onClick={() => paginate(number)}
+            >
+              {number}
+            </button>
+          </li>
+        ))}
+  
+        {currentPage < pageNumbers.length && (
+          <li>
+            <button onClick={() => paginate(currentPage + 1)}>{">"}</button>
+          </li>
+        )}
+      </ul>
+    );
+  };
+  
+  export default Facturas;
