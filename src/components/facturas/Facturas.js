@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
-import "./Facturas.css";
 
 function Facturas() {
   const [facturas, setFacturas] = useState([]);
@@ -102,13 +101,13 @@ function Facturas() {
   }, [fechaInicial, fechaFinal]);
 
   return (
-    <div className="facturas-container">
+    <div className="facturas-page">
       <Navbar />
 
-      <div className="container">
-        <h1>Facturas</h1>
+      <div className="facturas-container">
+        <h1 className="title-facturas">Facturas</h1>
 
-        <button onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
+        <button className="generate-button" onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
 
         <div className="filters">
           <div className="filter">
