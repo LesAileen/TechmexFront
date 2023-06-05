@@ -1,191 +1,86 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
-import axios from 'axios';
+import { Container } from 'react-bootstrap';
 
 const CrearProducto = () => {
-  const [productos, setProductos] = useState([]);
-  const [nombre, setNombre] = useState("");
-  const [precio, setPrecio] = useState("");
-  const [descripcion, setDescripcion] = useState("");
-  const [categoria, setCategoria] = useState([]);
-  const [mostrarModal, setMostrarModal] = useState(false);
+  const [nombre, setNombre] = useState('');
+  const [precio, setPrecio] = useState(0);
+  const [categoriaId, setCategoriaId] = useState(0);
+  const [imagen, setImagen] = useState('');
+  const [descripcion, setDescripcion] = useState('');
 
-  useEffect(() => {
-    obtenerProductos();
-  }, []);
-
-  const obtenerProductos = async () => {
-    try {
-      const response = await axios.get('http://localhost:8090/productos/lista');
-      setProductos(response.data);
-    } catch (error) {
-      console.error('Error al obtener la lista de productos:', error);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    if (name === 'nombre') {
+      setNombre(value);
+    } else if (name === 'precio') {
+      setPrecio(value);
+    } else if (name === 'categoriaId') {
+      setCategoriaId(value);
+    } else if (name === 'imagen') {
+      setImagen(value);
+    } else if (name === 'descripcion') {
+      setDescripcion(value);
     }
   };
 
-  const handleNombreChange = (event) => {
-    setNombre(event.target.value);
-  };
-
-  const handlePrecioChange = (event) => {
-    setPrecio(event.target.value);
-  };
-
-  const handleDescripcionChange = (event) => {
-    setDescripcion(event.target.value);
-  };
-
-  const handleCategoriaChange = (event) => {
-    const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
-    setCategoria(selectedOptions);
-  };
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-  
+
+    // Realiza la llamada a la API para insertar el producto
     const nuevoProducto = {
       nombre: nombre,
       precio: precio,
-      descripcion: descripcion,
-      categoria: categoria
+      categoria_id: categoriaId,
+      imagen: imagen,
+      descripcion: descripcion
     };
-  
-    try {
-      const params = {
-        nombre: encodeURIComponent(nombre),
-        precio: encodeURIComponent(precio),
-        descripcion: encodeURIComponent(descripcion),
-        categoria: encodeURIComponent(categoria)
-      };
-  
-      await axios.post('http://localhost:8090/productos/insertar', null, {
-        params: params
+
+    // Realiza la llamada a la API para insertar el producto usando fetch o axios
+    fetch('http://localhost:8090/productos/insertar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(nuevoProducto)
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Realiza cualquier acción necesaria después de insertar el producto
+        console.log('Producto insertado:', data);
+      })
+      .catch(error => {
+        console.error('Error al insertar el producto:', error);
       });
-  
-      setNombre("");
-      setPrecio(0);
-      setDescripcion("");
-      setCategoria("MENU");
-      setMostrarModal(false);
-  
-      obtenerProductos(); // Llamada para obtener los productos actualizados
-    } catch (error) {
-      console.error('Error al crear el producto:', error);
-    }
-  };
-  
-  
-
-  const abrirModal = () => {
-    setMostrarModal(true);
-  };
-
-  const cerrarModal = () => {
-    setMostrarModal(false);
-  };
-
-  const handleBorrarProducto = async (id) => {
-    try {
-      // Eliminar el producto de la lista de productos en el estado local
-      setProductos(productos.filter(producto => producto.id !== id));
-
-      // Realizar la solicitud de borrado al backend
-      await axios.delete(`http://localhost:8090/productos/borrar/${id}`);
-    } catch (error) {
-      console.error('Error al borrar el producto:', error);
-    }
-  };
-
-  const handleActualizarProducto = (index) => {
-    // Implementar la lógica de actualización del producto
-    // utilizando el índice recibido como parámetro
-    console.log("Actualizar producto en índice:", index);
   };
 
   return (
-    <>
+    <div>
       <Navbar />
-      <div className="container">
-        <h2>Crear Producto</h2>
-        <div className="table-container">
-          <table className="excel-table">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Descripción</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productos.map((producto, index) => (
-                <tr key={index}>
-                  <td>{producto.id}</td>
-                  <td>{producto.nombre}</td>
-                  <td>{producto.precio}</td>
-                  <td>{producto.descripcion}</td>
-                  <td>{producto.categoriaRol}</td>
-                  <td className="acciones">
-                    <button
-                      className="btn-borrar"
-                      onClick={() => handleBorrarProducto(producto.id)}
-                    >
-                      Borrar
-                    </button>
-                    <button
-                      className="btn-actualizar"
-                      onClick={() => handleActualizarProducto(index)}
-                    >
-                      Actualizar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {mostrarModal && (
-                <tr>
-                  <td></td>
-                  <td>
-                    <input type="text" value={nombre} onChange={handleNombreChange} />
-                  </td>
-                  <td>
-                    <input type="text" value={precio} onChange={handlePrecioChange} />
-                  </td>
-                  <td>
-                    <input type="text" value={descripcion} onChange={handleDescripcionChange} />
-                  </td>
-                  <td>
-                    <select multiple size="5" value={categoria} onChange={handleCategoriaChange}>
-                      <option value="MENU">Menú</option>
-                      <option value="INDIVIDUAL">Individual</option>
-                      <option value="ENTRANTES">Entrantes</option>
-                      <option value="BEBIDAS">Bebidas</option>
-                      <option value="POSTRES">Postres</option>
-                    </select>
-                  </td>
-                  <td>
-                    <button  className="btn-borrar" type="button" onClick={cerrarModal}>Cancelar</button>
-                    <button className="btn-actualizar"type="button" onClick={handleSubmit}>Agregar</button>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
-        <div className="button-container">
-          <button onClick={abrirModal}>Agregar Producto</button>
-        </div>
-      </div>
+      <Container className="mt-5">
+        <h1>Ingresar Producto</h1>
+        <form onSubmit={handleSubmit}>
+          <label>Nombre:</label>
+          <input type="text" name="nombre" value={nombre} onChange={handleInputChange} />
+          <br />
+          <label>Precio:</label>
+          <input type="number" name="precio" value={precio} onChange={handleInputChange} />
+          <br />
+          <label>Categoría ID:</label>
+          <input type="number" name="categoriaId" value={categoriaId} onChange={handleInputChange} />
+          <br />
+          <label>Imagen:</label>
+          <input type="text" name="imagen" value={imagen} onChange={handleInputChange} />
+          <br />
+          <label>Descripción:</label>
+          <textarea name="descripcion" value={descripcion} onChange={handleInputChange}></textarea>
+          <br />
+          <button type="submit">Guardar</button>
+        </form>
+      </Container>
       <Footer />
-      <style>{`
-        .acciones {
-          padding: 0;
-          margin: 0;
-        }
-      `}</style>
-    </>
+    </div>
   );
 };
 
