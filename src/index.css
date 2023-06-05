@@ -309,3 +309,92 @@ code {
 .ContainerRegister {
   
 }
+
+/************ Facturas Css ************/
+
+.facturas-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  align-items: center;
+  height: 100vh; /* Ajusta la altura del contenedor según el tamaño de la ventana */
+  position: relative; /* Asegura que los elementos posicionados dentro del contenedor se ajusten correctamente */
+}
+
+.facturas-container {
+  width: 90%;
+  max-width: 1200px; /* Opcional: limita el ancho máximo del contenedor */
+}
+
+.title-facturas {
+  margin-top: 100px; /* Ajusta el margen superior para evitar que se sobreponga al Navbar */
+  margin-bottom: 30px; /* Ajusta el margen inferior para agregar más espacio */
+}
+
+.generate-button {
+  position: absolute; /* Permite posicionar el botón de manera absoluta dentro del contenedor */
+  top: 130px; /* Ajusta la posición vertical del botón */
+  right: 20px; /* Ajusta la posición horizontal del botón */
+}
+
+.table-container {
+  max-height: calc(100vh - 300px); /* Ajusta la altura máxima de la tabla según el tamaño de la pantalla */
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px; /* Ajusta el margen superior para agregar más espacio */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  max-width: 1200px; /* Opcional: limita el ancho máximo de la tabla */
+}
+
+.cell {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.filter label {
+  margin-right: 10px;
+}
+
+.filter input,
+.filter select {
+  padding: 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.pagination li {
+  margin-right: 5px;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #ddd;
+}
