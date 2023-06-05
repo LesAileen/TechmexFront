@@ -310,91 +310,62 @@ code {
   
 }
 
-/************ Facturas Css ************/
 
-.facturas-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+/************ Crear Producto Css ************/
 
-  align-items: center;
-  height: 100vh; /* Ajusta la altura del contenedor según el tamaño de la ventana */
-  position: relative; /* Asegura que los elementos posicionados dentro del contenedor se ajusten correctamente */
+
+.excel-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.facturas-container {
-  width: 90%;
-  max-width: 1200px; /* Opcional: limita el ancho máximo del contenedor */
+.excel-table th,
+.excel-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
 }
 
-.title-facturas {
-  margin-top: 100px; /* Ajusta el margen superior para evitar que se sobreponga al Navbar */
-  margin-bottom: 30px; /* Ajusta el margen inferior para agregar más espacio */
-}
-
-.generate-button {
-  position: absolute; /* Permite posicionar el botón de manera absoluta dentro del contenedor */
-  top: 130px; /* Ajusta la posición vertical del botón */
-  right: 20px; /* Ajusta la posición horizontal del botón */
+.excel-table th {
+  background-color: #f2f2f2;
 }
 
 .table-container {
-  max-height: calc(100vh - 300px); /* Ajusta la altura máxima de la tabla según el tamaño de la pantalla */
-  overflow-y: auto;
-  display: flex;
-  justify-content: center;
-  margin-top: 30px; /* Ajusta el margen superior para agregar más espacio */
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  max-width: 1200px; /* Opcional: limita el ancho máximo de la tabla */
-}
-
-.cell {
+  background-color: white;
+  margin-top: 70px; /* Ajusta el margen superior según sea necesario */
   border: 1px solid black;
-  padding: 8px;
+  overflow: auto;
+  max-height: 400px;
 }
 
-.filters {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.filter label {
-  margin-right: 10px;
-}
-
-.filter input,
-.filter select {
-  padding: 5px;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
+.button-container {
   margin-top: 20px;
 }
 
-.pagination ul {
-  display: flex;
-  list-style: none;
-  padding: 0;
-}
-
-.pagination li {
+.btn-borrar {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
   margin-right: 5px;
 }
 
-.pagination button {
-  padding: 5px 10px;
+.btn-actualizar {
+  background-color: blue;
+  color: white;
   border: none;
-  background-color: #f2f2f2;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
-.pagination button.active {
-  background-color: #ddd;
+.excel-table td.acciones {
+  white-space: nowrap;
+  max-width: 0;
+  padding: 0;
+}
+
+.excel-table td.acciones button {
+  margin-right: 5px;
 }
