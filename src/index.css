@@ -310,6 +310,66 @@ code {
   
 }
 
+/************ Crear Producto Css ************/
+
+
+.excel-table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.excel-table th,
+.excel-table td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+.excel-table th {
+  background-color: #f2f2f2;
+}
+
+.table-container {
+  background-color: white;
+  margin-top: 70px; /* Ajusta el margen superior según sea necesario */
+  border: 1px solid black;
+  overflow: auto;
+  max-height: 400px;
+}
+
+.button-container {
+  margin-top: 20px;
+}
+
+.btn-borrar {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.btn-actualizar {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.excel-table td.acciones {
+  white-space: nowrap;
+  max-width: 0;
+  padding: 0;
+}
+
+.excel-table td.acciones button {
+  margin-right: 5px;
+}
+
+
 /************ Facturas Css ************/
 
 .facturas-page {
