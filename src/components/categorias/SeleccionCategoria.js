@@ -8,8 +8,7 @@ function SeleccionCategorias() {
   return (
     <>
       <ButtonGroup className="mb-2">
-        <BotonCategoria nombre="Menu" />
-        <BotonCategoria nombre="Individual" />
+        <BotonCategoria nombre="Principales" />
         <BotonCategoria nombre="Entrantes"  />
         <BotonCategoria nombre="Bebidas"  />
         <BotonCategoria nombre="Postres" /> 
