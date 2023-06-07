@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
+import axios from 'axios';
 
 function Facturas() {
   const [facturas, setFacturas] = useState([]);
@@ -9,6 +10,20 @@ function Facturas() {
   const [fechaInicial, setFechaInicial] = useState("");
   const [fechaFinal, setFechaFinal] = useState("");
   const [filteredFacturas, setFilteredFacturas] = useState([]);
+
+  useEffect(() => {
+    fetchFacturas();
+  }, []);
+
+  const fetchFacturas = async () => {
+    try {
+      const response = await axios.get("http://localhost:8090/facturas/lista");
+      setFacturas(response.data);
+      setFilteredFacturas(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const generateExampleFacturas = () => {
     const exampleFacturas = [];
@@ -151,10 +166,10 @@ function Facturas() {
               {currentFacturas.map((factura) => (
                 <tr key={factura.facturaId}>
                   <td className="cell">{factura.fecha}</td>
-                  <td className="cell">{factura.facturaId}</td>
-                  <td className="cell">{factura.numeroMesa}</td>
-                  <td className="cell">{factura.cliente}</td>
-                  <td className="cell">{factura.formaPago}</td>
+                  <td className="cell">{factura.factura_id}</td>
+                  <td className="cell">{factura.num_mesa}</td>
+                  <td className="cell">{factura.usuario_id}</td>
+                  <td className="cell">{factura.formasPago}</td>
                   <td className="cell">{factura.total}</td>
                 </tr>
               ))}
