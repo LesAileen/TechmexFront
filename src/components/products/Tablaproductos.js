@@ -5,7 +5,7 @@ import ImagenTacoPrueba from '../../assets/img/Taco.png';
 
 const TablaProductos = ({ agregarPedido }) => {
   const [productos, setProductos] = useState([]);
-  const [filtroRol, setFiltroRol] = useState("MENU");
+  const [filtroRol, setFiltroRol] = useState("PRINCIPALES");
 
   useEffect(() => {
     obtenerProductos();
@@ -36,8 +36,7 @@ const TablaProductos = ({ agregarPedido }) => {
   return (
     <div>
       <div className="filtro-roles d-flex">
-        <BotonCategoria nombre="MENU" onClick={() => filtrarProductosPorRol('MENU')} />
-        <BotonCategoria nombre="INDIVIDUAL" onClick={() => filtrarProductosPorRol('INDIVIDUAL')} />
+        <BotonCategoria nombre="PRINCIPALES" onClick={() => filtrarProductosPorRol('PRINCIPALES')} />
         <BotonCategoria nombre="ENTRANTES" onClick={() => filtrarProductosPorRol('ENTRANTES')} />
         <BotonCategoria nombre="POSTRES" onClick={() => filtrarProductosPorRol('POSTRES')} />
         <BotonCategoria nombre="BEBIDAS" onClick={() => filtrarProductosPorRol('BEBIDAS')} />

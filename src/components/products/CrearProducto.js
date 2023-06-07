@@ -158,8 +158,7 @@ const CrearProducto = () => {
                   </td>
                   <td>
                     <select multiple size="5" value={categoria} onChange={handleCategoriaChange}>
-                      <option value="MENU">Menú</option>
-                      <option value="INDIVIDUAL">Individual</option>
+                      <option value="PRINCIPALES">Principales</option>
                       <option value="ENTRANTES">Entrantes</option>
                       <option value="BEBIDAS">Bebidas</option>
                       <option value="POSTRES">Postres</option>
