@@ -44,17 +44,6 @@ const Banner = () => {
               </TrackVisibility>
             </div>
           </Col>
-          <Col xs={12} md={6} xl={4} className="text-center d-flex">
-            <div className="flex-fill">
-              <TrackVisibility once>
-                {({ isVisible }) => (
-                  <div className={isVisible ? 'animate__animated animate__zoomIn' : ''}>
-                    <img id="imagenPrincipal" src={headerImg} alt="Header Img" />
-                  </div>
-                )}
-              </TrackVisibility>
-            </div>
-          </Col>
         </Row>
       </Container>
     </section>
