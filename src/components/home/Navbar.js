@@ -147,11 +147,6 @@ const ResponsiveAppBar = () => {
               </Link>
             ))}
           </Box>
-          <img
-            src={carrito}
-            alt="Carrito de compras"
-            style={{ width: '50px', marginRight: '10px' }}
-          />
           <Button href="/Login">Login</Button>
         </Toolbar>
       </Container>

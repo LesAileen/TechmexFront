@@ -8,6 +8,7 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import RegistrarEmpleado from "./components/admin/RegistrarEmpleado";
 import CrearPrducto from "./components/products/CrearProducto";
+import Ticket from "./components/ticket/Ticket"
 import Facturas from "./components/facturas/Facturas";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -23,6 +24,7 @@ root.render(
       <Route path="/Añadir productos" element={<CrearPrducto />}></Route>
       <Route path="/Registar empleados" element={<RegistrarEmpleado />}></Route>
       <Route path="/Facturas" element={<Facturas />}></Route>
+      <Route path="/Ticket" element={<Ticket />}></Route>
     </Routes>
   </BrowserRouter>
 );
