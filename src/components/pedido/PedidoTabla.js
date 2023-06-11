@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Table, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Ticket from '../ticket/Ticket';
 
-const PedidoTabla = ({ pedidos, eliminarPedido }) => {
+const PedidoTabla = ({ pedidos, eliminarPedido}) => {
   const [cantidad, setCantidad] = useState(''); // Estado para almacenar la cantidad
-  const [numeroMesa, setNumeroMesa] = useState(''); // Estado para almacenar el número de mesa
+  const [numeroMesa, setNumeroMesa] = useState('');// Estado para almacenar el número de mesa
 
   const handleEliminarPedido = (index) => {
     eliminarPedido(index);
@@ -37,7 +38,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
         console.log('Compra realizada exitosamente');
         // Realizar acciones adicionales si es necesario
         // Redirige a la página del ticket
-        window.location.href = `/ticket?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}`;
+        window.location.href = `/ticket?numeroMesa=${numeroMesa}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
       })
       .catch(error => {
         console.error('Error al realizar la compra:', error);
@@ -101,7 +102,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
             <tr>
             <td colSpan="3" style={{ textAlign: 'center' }}>
               <Button variant="primary" size="sm" onClick={handleComprar}>
-                <Link to="/Ticket" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                   Pedir
                 </Link>
               </Button>
