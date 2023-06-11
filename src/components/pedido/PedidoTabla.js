@@ -101,7 +101,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
             <tr>
             <td colSpan="3" style={{ textAlign: 'center' }}>
               <Button variant="primary" size="sm" onClick={handleComprar}>
-                <Link to="/ticket" style={{ color: 'inherit', textDecoration: 'none' }}>
+                <Link to="/Ticket" style={{ color: 'inherit', textDecoration: 'none' }}>
                   Pedir
                 </Link>
               </Button>

@@ -1,31 +1,47 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Ticket = ({ total, numeroMesa, listaProductos }) => {
-  let productos = [];
+const Ticket = () => {
+  const products = [
+    { name: 'Producto 1', price: 10 },
+    { name: 'Producto 2', price: 15 },
+    { name: 'Producto 3', price: 20 },
+  ];
 
-  if (Array.isArray(listaProductos)) {
-    productos = listaProductos;
-  }
+  const total = products.reduce((sum, product) => sum + product.price, 0);
 
   return (
-    <div>
-      <h2>Ticket</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Producto</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productos.map((producto, index) => (
-            <tr key={index}>
-              <td>{producto}</td>
+    <div className="container-ticket">
+      <div className="ticket">
+        <h2>Ticket</h2>
+        <table>
+          <tbody>
+            <tr>
+              <td>Número de mesa:</td>
+              <td>1</td> {/* Puedes cambiar el número de mesa aquí */}
             </tr>
-          ))}
-        </tbody>
-      </table>
-      <p>Total: {total}</p>
-      <p>Número de mesa: {numeroMesa}</p>
+            {products.map((product, index) => (
+              <tr key={index}>
+                <td>{product.name}:</td>
+                <td>${product.price}</td>
+              </tr>
+            ))}
+            <tr>
+              <td>Total:</td>
+              <td>${total}</td>
+            </tr>
+            <tr>
+              <td>Tomar o llevar:</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="back-button">
+        <Link to="/">
+          <span>&larr;</span>
+        </Link>
+      </div>
     </div>
   );
 };

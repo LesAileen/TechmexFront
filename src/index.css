@@ -254,7 +254,6 @@ code {
   }
 }
 
-
 /************ TablaMenu Css ************/
 
 .transparent-table {
@@ -354,7 +353,6 @@ code {
   margin-right: 5px;
 }
 
-
 /************ Facturas Css ************/
 
 .facturas-page {
@@ -442,4 +440,46 @@ code {
 
 .pagination button.active {
   background-color: #ddd;
+}
+
+/************ Ticket Css ************/
+
+.container-ticket {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.ticket {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.ticket h2 {
+  text-align: center;
+}
+
+.ticket table {
+  width: 100%;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #f28d00;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
 }
