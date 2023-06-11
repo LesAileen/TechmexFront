@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./assets/img/fondo.png');
+  /*background-image: url('./assets/img/fondo.png');*/
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -271,14 +271,56 @@ code {
 
 /************ Home Css ************/
 
-/*.home-container {
-  width: 100vw;  Ocupa el 100% del ancho de la ventana 
-  height: 100vh;  Ocupa el 100% de la altura de la ventana 
-  background-color: #fff; /* Color de fondo deseado 
-  margin: 0; /* Elimina los márgenes por defecto del cuerpo 
-  padding: 0;
-/*}*/
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
+.background-imagehome {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-imagehome img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content-containerhome {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-texthome {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.text-black {
+  color: black;
+}
+
+.centered-texthome h1 {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+.start-order-buttonhome {
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
 
 /************ Login Css ************/
 

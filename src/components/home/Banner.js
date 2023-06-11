@@ -7,6 +7,8 @@ import { ArrowRightCircle } from 'react-bootstrap-icons';
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 import PedidoTabla from '../pedido/PedidoTabla';
+import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Banner = () => {
   const [pedidos, setPedidos] = useState([]);
@@ -27,26 +29,18 @@ const Banner = () => {
   };
   
   return (
-    <section className="banner" id="home">
-      <Container fluid>
-        <Row className="align-items-stretch">
-          <Col xs={12} md={6} xl={4} className="d-flex">
-            <div className="flex-fill">
-              <TrackVisibility once>
-                <TablaProductos agregarPedido={agregarPedido} eliminarPedido={eliminarPedido} />
-              </TrackVisibility>
-            </div>
-          </Col>
-          <Col xs={12} md={6} xl={4} className="d-flex">
-            <div className="flex-fill">
-              <TrackVisibility once>
-                <PedidoTabla pedidos={pedidos} eliminarPedido={eliminarPedido} />
-              </TrackVisibility>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </section>
+    <div>
+      <Navbar></Navbar>
+      <section className="banner" id="home">
+        <Container>
+          <Row>
+            <TablaProductos agregarPedido={agregarPedido} eliminarPedido={eliminarPedido} />
+            <PedidoTabla pedidos={pedidos} eliminarPedido={eliminarPedido} />
+          </Row>
+        </Container>
+      </section>
+      <Footer></Footer>
+    </div>
   );
 };
 

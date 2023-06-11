@@ -1,19 +1,29 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
-import Banner from "./Banner";
 import Footer from "./Footer";
-import Imagenes from "./Imagenes";
-import CrearProducto from "../products/CrearProducto";
-import Tablaproductos from "../products/Tablaproductos";
+import Banner from "./Banner";
+import backgroundImage from "../../assets/fondo/fondo2.jpg"; // Ruta de la imagen
+
 
 function Home() {
   return (
     <>
+      <Navbar></Navbar>
       <div className="home-container">
-        <Navbar></Navbar>
-        <Banner></Banner>
-        <Footer></Footer>
+        <div className="background-imagehome">
+          <img src={backgroundImage} alt="Background" />
+        </div>
+        <div className="content-containerhome">
+          <div className="centered-texthome">
+          <h1 className="text-black">TECHMEX</h1>
+          <Link to="/Banner">
+              <button className="start-order-buttonhome">Iniciar Pedido</button>
+            </Link>
+          </div>
+        </div>
       </div>
+      <Footer></Footer>
     </>
   );
 }
