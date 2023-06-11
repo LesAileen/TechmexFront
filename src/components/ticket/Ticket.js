@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Ticket = () => {
   const products = [
@@ -10,6 +10,10 @@ const Ticket = () => {
 
   const total = products.reduce((sum, product) => sum + product.price, 0);
 
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const numeroMesa = searchParams.get('numeroMesa');
+
   return (
     <div className="container-ticket">
       <div className="ticket">
@@ -18,7 +22,7 @@ const Ticket = () => {
           <tbody>
             <tr>
               <td>Número de mesa:</td>
-              <td>1</td> {/* Puedes cambiar el número de mesa aquí */}
+              <td>{numeroMesa}</td>
             </tr>
             {products.map((product, index) => (
               <tr key={index}>
