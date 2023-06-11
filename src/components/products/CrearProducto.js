@@ -74,8 +74,6 @@ const CrearProducto = () => {
       console.error('Error al crear el producto:', error);
     }
   };
-  
-  
 
   const abrirModal = () => {
     setMostrarModal(true);
@@ -105,7 +103,6 @@ const CrearProducto = () => {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <h2>Crear Producto</h2>
         <div className="table-container">
@@ -177,7 +174,6 @@ const CrearProducto = () => {
           <button onClick={abrirModal}>Agregar Producto</button>
         </div>
       </div>
-      <Footer />
       <style>{`
         .acciones {
           padding: 0;

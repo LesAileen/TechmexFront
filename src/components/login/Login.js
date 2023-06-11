@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -11,6 +11,9 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
+import RegistrarEmpleado from "../admin/RegistrarEmpleado";
+import Facturas from "../facturas/Facturas";
+import CrearProducto from "../products/CrearProducto";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -31,6 +34,25 @@ function Login() {
   const [password, setPassword] = useState("");
   const [leyenda, setLeyenda] = useState("");
   const [errorPassword, setErrorPassword] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [activeComponent, setActiveComponent] = useState(""); // Estado para controlar el componente activo
+
+  useEffect(() => {
+    // Recuperar el estado de autenticación al cargar la página
+    const storedIsLoggedIn = localStorage.getItem("isLoggedIn");
+    const storedIsAdmin = localStorage.getItem("isAdmin");
+    if (storedIsLoggedIn === "true") {
+      setIsLoggedIn(true);
+      if (storedIsAdmin === "true") {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -52,14 +74,27 @@ function Login() {
     login(email, password);
   };
 
+  const toggleLogin = () => {
+    setIsLoggedIn(false);
+    setIsAdmin(false);
+    localStorage.setItem("isLoggedIn", "false");
+    localStorage.setItem("isAdmin", "false");
+  };
+
   const login = (email, password) => {
-    // Realiza una llamada a la API para verificar las credenciales del usuario
     fetch(`http://localhost:8090/autentication/login?email=${email}&password=${password}`)
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
-        if (data === true) {
+        if (data === "true") {
+          setIsLoggedIn(true);
+          localStorage.setItem("isLoggedIn", "true");
+          checkAdmin(email, password);
           alert("Inicio de sesión exitoso");
         } else {
+          setIsLoggedIn(false);
+          setIsAdmin(false);
+          localStorage.setItem("isLoggedIn", "false");
+          localStorage.setItem("isAdmin", "false");
           alert("Inicio de sesión fallido");
         }
       })
@@ -68,9 +103,73 @@ function Login() {
       });
   };
 
+  const checkAdmin = (email, password) => {
+    fetch(`http://localhost:8090/autentication/IsAdmin?email=${email}&password=${password}`)
+      .then((response) => response.text())
+      .then((data) => {
+        if (data === "true") {
+          setIsAdmin(true);
+          localStorage.setItem("isAdmin", "true");
+        } else {
+          setIsAdmin(false);
+          localStorage.setItem("isAdmin", "false");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
+  const handleComponentChange = (componentName) => {
+    setActiveComponent(componentName);
+  };
+
+  if (isLoggedIn) {
+    if (isAdmin) {
+      return (
+        <div>
+          <Navbar />
+          <Box sx={{ paddingTop: "64px" }}>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Button variant="contained" onClick={() => handleComponentChange("registrarEmpleado")}>
+                Registrar empleados
+              </Button>
+              <Button variant="contained" onClick={() => handleComponentChange("facturas")}>
+                Facturas
+              </Button>
+              <Button variant="contained" onClick={() => handleComponentChange("crearProducto")}>
+                Crear producto
+              </Button>
+            </Box>
+            {activeComponent === "registrarEmpleado" && <RegistrarEmpleado />}
+            {activeComponent === "facturas" && <Facturas />}
+            {activeComponent === "crearProducto" && <CrearProducto />}
+            <Button variant="contained" onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
+              Cerrar sesión
+            </Button>
+          </Box>
+          <Footer />
+        </div>
+      );
+    }
+
+    return (
+      <div>
+        <p>USER</p>
+        <p>USER</p>
+        <p>USER</p>
+        <p>USER</p>
+        <p>USER</p>
+
+        <Button variant="contained" onClick={toggleLogin}>
+          Cerrar sesión
+        </Button>
+      </div>
+    );
+  }
   return (
     <div>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       <Box sx={{ paddingTop: "64px" }}>
         <Container className="ContainerRegister" component="main" maxWidth="xs">
           <Box>
@@ -157,7 +256,6 @@ function Login() {
           </Box>
         </Container>
       </Box>
-
       <Footer />
     </div>
   );

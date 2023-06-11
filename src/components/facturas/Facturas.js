@@ -117,13 +117,9 @@ function Facturas() {
 
   return (
     <div className="facturas-page">
-      <Navbar />
-
       <div className="facturas-container">
         <h1 className="title-facturas">Facturas</h1>
-
         <button className="generate-button" onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
-
         <div className="filters">
           <div className="filter">
             <label htmlFor="fechaInicial">Fecha inicial:</label>
@@ -134,7 +130,6 @@ function Facturas() {
               onChange={(e) => setFechaInicial(e.target.value)}
             />
           </div>
-
           <div className="filter">
             <label htmlFor="fechaFinal">Fecha final:</label>
             <input
@@ -144,12 +139,10 @@ function Facturas() {
               onChange={(e) => setFechaFinal(e.target.value)}
             />
           </div>
-
           <div className="filter">
             <button onClick={exportToCsv}>Exportar a CSV</button>
           </div>
         </div>
-
         <div className="table-container">
           <table className="table">
             <thead>
@@ -176,7 +169,6 @@ function Facturas() {
             </tbody>
           </table>
         </div>
-
         <div className="pagination">
           {filteredFacturas.length > facturasPerPage && (
             <Pagination
@@ -188,8 +180,6 @@ function Facturas() {
           )}
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 }

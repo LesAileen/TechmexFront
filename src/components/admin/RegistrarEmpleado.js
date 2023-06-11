@@ -40,7 +40,7 @@ function RegistrarEmpleado() {
     }
 
     try {
-      const url = new URL("http://localhost:8090/autentication/register");
+      const url = new URL("http://localhost:8090/autentication/registerEmpleado");
       url.searchParams.append("email", email);
       url.searchParams.append("user", user);
       url.searchParams.append("password", password);
@@ -68,7 +68,6 @@ function RegistrarEmpleado() {
 
   return (
     <div>
-      <Navbar />
       <Container className="ContainerRegister" component="main" maxWidth="xs">
         <Box sx={{ paddingTop: "64px" }}>
           <Typography
@@ -167,7 +166,6 @@ function RegistrarEmpleado() {
           </form>
         </Box>
       </Container>
-      <Footer />
     </div>
   );
 }
