@@ -15,7 +15,10 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
   };
 
   const handleNumeroMesaChange = (e) => {
-    setNumeroMesa(e.target.value);
+    const value = e.target.value;
+    if (value === "" || (parseInt(value) > 0 && !isNaN(parseInt(value)))) {
+      setNumeroMesa(value);
+    }
   };
 
   const handleComprar = () => {
@@ -53,8 +56,8 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
 
   return (
     <div>
-      <div style={{ maxHeight: '500px', overflowY: 'scroll' }}>
-        <Table striped bordered hover variant="dark" className="transparent-table">
+      <div>
+      <Table striped bordered hover variant="dark" className="transparent-table" style={{ maxWidth: '500px', overflowX: 'auto' }}>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -82,22 +85,27 @@ const PedidoTabla = ({ pedidos, eliminarPedido }) => {
             </tr>
             <tr>
               <td colSpan="3" style={{ textAlign: 'center' }}>
-                <Form.Control
+              <input
                   type="number"
                   value={numeroMesa}
                   onChange={handleNumeroMesaChange}
                   placeholder="Número de mesa"
+                  onKeyDown={(e) => {
+                    if (!/\d/.test(e.key) && e.key !== 'Backspace') {
+                      e.preventDefault();
+                    }
+                  }}
                 />
               </td>
             </tr>
             <tr>
-              <td colSpan="3" style={{ textAlign: 'center' }}>
-                <Link to="/ticket">
-                  <Button variant="primary" size="sm" onClick={handleComprar}>
-                    Comprar
-                  </Button>
+            <td colSpan="3" style={{ textAlign: 'center' }}>
+              <Button variant="primary" size="sm" onClick={handleComprar}>
+                <Link to="/ticket" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Pedir
                 </Link>
-              </td>
+              </Button>
+            </td>
             </tr>
           </tfoot>
         </Table>

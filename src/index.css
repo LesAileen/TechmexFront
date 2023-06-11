@@ -269,46 +269,31 @@ code {
 
 /************ Imagenes Css ************/
 
-.custom-carousel {
-  height: 400px; /* Cambia el valor según el tamaño deseado */
-  width: 100%; /* Cambia el valor según el tamaño deseado */
-}
-
-.custom-carousel-container {
-  height: 100px; /* Cambia el valor según el tamaño deseado */
-}
-
-.custom-carousel img {
-  width: 700px;
-  height: 250px;
-}
-
 
 /************ Home Css ************/
 
-.home-container {
-  width: 100vw; /* Ocupa el 100% del ancho de la ventana */
-  height: 100vh; /* Ocupa el 100% de la altura de la ventana */
-  background-color: #fff; /* Color de fondo deseado */
-  margin: 0; /* Elimina los márgenes por defecto del cuerpo */
+/*.home-container {
+  width: 100vw;  Ocupa el 100% del ancho de la ventana 
+  height: 100vh;  Ocupa el 100% de la altura de la ventana 
+  background-color: #fff; /* Color de fondo deseado 
+  margin: 0; /* Elimina los márgenes por defecto del cuerpo 
   padding: 0;
-}
-
+/*}*/
 
 
 /************ Login Css ************/
 
 
-.ContainerLogin {
+/*.ContainerLogin {
   
-}
+}*/
 
 /************ Register Css ************/
 
 
-.ContainerRegister {
+/*.ContainerRegister {
   
-}
+}*/
 
 /************ Crear Producto Css ************/
 
