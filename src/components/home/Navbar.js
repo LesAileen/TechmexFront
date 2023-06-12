@@ -55,7 +55,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
       <Container
         maxWidth="100%"
         sx={{
-          backgroundColor: "black",
+          backgroundColor: "#452404",
           position: "fixed",
           zIndex: "100",
         }}

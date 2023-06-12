@@ -131,20 +131,20 @@ function Login() {
           <Navbar />
           <Box sx={{ paddingTop: "64px" }}>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button variant="contained" onClick={() => handleComponentChange("registrarEmpleado")}>
+              <Button variant="contained" style={{ marginTop: '10px',backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("registrarEmpleado")}>
                 Registrar empleados
               </Button>
-              <Button variant="contained" onClick={() => handleComponentChange("facturas")}>
+              <Button variant="contained" style={{ marginTop: '10px', backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("facturas")}>
                 Facturas
               </Button>
-              <Button variant="contained" onClick={() => handleComponentChange("crearProducto")}>
+              <Button variant="contained" style={{ marginTop: '10px', backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("crearProducto")}>
                 Crear producto
               </Button>
             </Box>
             {activeComponent === "registrarEmpleado" && <RegistrarEmpleado />}
             {activeComponent === "facturas" && <Facturas />}
             {activeComponent === "crearProducto" && <CrearProducto />}
-            <Button variant="contained" onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
+            <Button variant="contained" style={{ backgroundColor: '#896144', border: 'none'}} onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
               Cerrar sesión
             </Button>
           </Box>
@@ -169,10 +169,12 @@ function Login() {
   }
   return (
     <div>
+      
       <Navbar isLoggedIn={isLoggedIn} />
-      <Box sx={{ paddingTop: "64px" }}>
+      <Box sx={{ paddingTop: "64px", display: "flex", justifyContent: "center" }}>
+        <table style={{marginTop:'30px', backgroundColor:'white'}}>
         <Container className="ContainerRegister" component="main" maxWidth="xs">
-          <Box>
+            <Box sx={{ paddingTop: "30px", textAlign: "center" }}>
             <Typography
               variant="h3"
               fontFamily="Digitalism"
@@ -187,6 +189,7 @@ function Login() {
                 color: "inherit",
                 textDecoration: "none",
                 alignItems: "center",
+                justifyContent: "center",
               }}
             >
               Texchmex
@@ -237,6 +240,7 @@ function Login() {
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
+                style={{backgroundColor:'#896144'}}
               >
                 Continuar
               </Button>
@@ -255,8 +259,10 @@ function Login() {
             </Box>
           </Box>
         </Container>
+        </table>
       </Box>
       <Footer />
+
     </div>
   );
 }

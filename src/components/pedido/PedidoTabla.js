@@ -67,6 +67,8 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
     return total.toFixed(2);
   };
 
+  const isPedidoValido = numeroMesa !== '' && pedidos.length > 0;
+
   return (
     <div>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -120,7 +122,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                   <option value="efectivo">Efectivo</option>
                 </Form.Select>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-55px' }}>
-                  <Button variant="primary" size="sm" onClick={handlePedir}>
+                  <Button className= "botonPedir" style={{ backgroundColor: '#ae5618', border: 'none'}} size="sm" onClick={handlePedir} disabled={!isPedidoValido}>
                     <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       Pedir
                     </Link>

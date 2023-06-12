@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/img/fondo.png');*/
+  background-image: url('./assets/fondo/fondo2.jpg');
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,7 +74,6 @@ code {
 .banner {
   margin-top: 0;
   padding: 260px 0 800px 0;
-  background-image: url('./assets/img/fondo.png');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -149,7 +148,7 @@ code {
 .footer {
   padding: 0 0 10px 0;
   min-height: 70px;
-  background-color: #191919;
+  background-color: #452404;
   border-top: 1px solid rgba(50, 50, 50, 0.3);
   width: 100%;
   position: fixed;
@@ -352,32 +351,33 @@ code {
   
 }*/
 
-/************ Crear Producto Css ************/
+/**** Crear Producto Css ****/
 
 
-.excel-table {
+.excel-tableproducts {
   border-collapse: collapse;
   width: 100%;
   margin: 0 auto;
 }
 
-.excel-table th,
-.excel-table td {
+.excel-tableproducts th,
+.excel-tableproducts td {
   border: 1px solid black;
-  padding: 8px;
+  padding: 8px 50px;
   text-align: left;
 }
 
-.excel-table th {
+.excel-tableproducts th {
   background-color: #f2f2f2;
 }
 
-.table-container {
+.table-containerproducts {
   background-color: white;
   margin-top: 70px; /* Ajusta el margen superior según sea necesario */
   border: 1px solid black;
-  overflow: auto;
   max-height: 400px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .button-container {
@@ -401,14 +401,49 @@ code {
   cursor: pointer;
 }
 
-.excel-table td.acciones {
+.excel-tableproducts td.acciones {
   white-space: nowrap;
   max-width: 0;
   padding: 0;
+  margin: 0;
 }
 
-.excel-table td.acciones button {
+.excel-tableproducts td.acciones button {
   margin-right: 5px;
+}
+
+.acciones {
+  padding: 0;
+  margin: 0;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border: none;
+  background-color: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #666;
+  color: #fff;
+}
+
+.containerproducts {
+  margin: 0 20px; /* Agrega margen a los lados según sea necesario */
+}
+
+.butonAgregarProducto {
+  font-size: 1.2rem;
+  padding: 10px 20px;
 }
 
 /************ Facturas Css ************/

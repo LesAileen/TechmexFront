@@ -10,6 +10,8 @@ const CrearProducto = () => {
   const [descripcion, setDescripcion] = useState("");
   const [categoria, setCategoria] = useState([]);
   const [mostrarModal, setMostrarModal] = useState(false);
+  const [paginaActual, setPaginaActual] = useState(1);
+  const productosPorPagina = 5;
 
   useEffect(() => {
     obtenerProductos();
@@ -101,12 +103,24 @@ const CrearProducto = () => {
     console.log("Actualizar producto en índice:", index);
   };
 
+  // Calcular índices de productos para la paginación
+  const indiceUltimoProducto = paginaActual * productosPorPagina;
+  const indicePrimerProducto = indiceUltimoProducto - productosPorPagina;
+  const productosPaginados = productos.slice(indicePrimerProducto, indiceUltimoProducto);
+
+  // Cambiar de página
+  const paginar = (numeroPagina) => {
+    setPaginaActual(numeroPagina);
+  };
+
   return (
     <>
-      <div className="container">
-        <h2>Crear Producto</h2>
-        <div className="table-container">
-          <table className="excel-table">
+      <div className="containerproducts">
+        <h2 style={{marginTop:'20px', textAlign:'center', backgroundColor:'white', color:'#452404'}}>
+          Crear Producto
+        </h2>
+        <div className="table-containerproducts">
+          <table className="excel-tableproducts">
             <thead>
               <tr>
                 <th>Id</th>
@@ -118,11 +132,11 @@ const CrearProducto = () => {
               </tr>
             </thead>
             <tbody>
-              {productos.map((producto, index) => (
+              {productosPaginados.map((producto, index) => (
                 <tr key={index}>
                   <td>{producto.id}</td>
                   <td>{producto.nombre}</td>
-                  <td>{producto.precio}</td>
+                  <td>{producto.precio}€</td>
                   <td>{producto.descripcion}</td>
                   <td>{producto.categoriaRol}</td>
                   <td className="acciones">
@@ -171,15 +185,22 @@ const CrearProducto = () => {
           </table>
         </div>
         <div className="button-container">
-          <button onClick={abrirModal}>Agregar Producto</button>
+          <button className="butonAgregarProducto" style={{color: 'white', backgroundColor: '#308446', border: 'none'}} onClick={abrirModal}>
+            Agregar Producto
+          </button>
+        </div>
+        <div className="pagination-container">
+          {Array.from({ length: Math.ceil(productos.length / productosPorPagina) }, (_, index) => (
+            <button
+              key={index}
+              onClick={() => paginar(index + 1)}
+              className={`pagination-button ${paginaActual === index + 1 ? 'active' : ''}`}
+            >
+              {index + 1}
+            </button>
+          ))}
         </div>
       </div>
-      <style>{`
-        .acciones {
-          padding: 0;
-          margin: 0;
-        }
-      `}</style>
     </>
   );
 };

@@ -67,9 +67,10 @@ function RegistrarEmpleado() {
   };
 
   return (
-    <div>
+    <div className="empleado-container" style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
+      <table className="tableEmpleado" style={{background:'white'}}>
       <Container className="ContainerRegister" component="main" maxWidth="xs">
-        <Box sx={{ paddingTop: "64px" }}>
+        <Box sx={{ paddingTop: "30px", textAlign: "center" }}>
           <Typography
             variant="h3"
             fontFamily="Digitalism"
@@ -84,6 +85,7 @@ function RegistrarEmpleado() {
               color: "inherit",
               textDecoration: "none",
               alignItems: "center",
+              justifyContent: "center",
             }}
           >
             REGISTRO
@@ -160,12 +162,13 @@ function RegistrarEmpleado() {
                 <option value="ADMIN">Admin</option>
               </select>
             </div>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor:'#896144'}}>
               Registarse
             </Button>
           </form>
         </Box>
       </Container>
+      </table>
     </div>
   );
 }
