@@ -6,6 +6,8 @@ import Ticket from '../ticket/Ticket';
 const PedidoTabla = ({ pedidos, eliminarPedido}) => {
   const [cantidad, setCantidad] = useState(''); // Estado para almacenar la cantidad
   const [numeroMesa, setNumeroMesa] = useState('');// Estado para almacenar el número de mesa
+  const [opciones, setOpciones] = useState('tomar');
+  const [formaPago, setFormaPago] = useState('tarjeta');
 
   const handleEliminarPedido = (index) => {
     eliminarPedido(index);
@@ -22,15 +24,25 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
     }
   };
 
-  const handleComprar = () => {
+  const handleOpcionesChange = (e) => {
+    setOpciones(e.target.value);
+  };
+
+  const handleFormaPagoChange = (e) => {
+    setFormaPago(e.target.value);
+  };
+
+  const handlePedir = () => {
     const total = calcularTotal();
     const listaProductos = pedidos.map((pedido) => pedido.nombre);
+    const opcion = opciones;
+    const pago = formaPago;
 
     // Convierte la lista de productos en una cadena JSON
     const listaProductosJSON = JSON.stringify(listaProductos);
 
     // Realiza el PUT y luego redirige a la página del ticket
-    fetch(`http://localhost:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}`, {
+    fetch(`http://localhost:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}&formaPago=${pago}&opciones=${opcion}`, {
       method: 'PUT'
     })
       .then(response => response.json())
@@ -38,7 +50,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
         console.log('Compra realizada exitosamente');
         // Realizar acciones adicionales si es necesario
         // Redirige a la página del ticket
-        window.location.href = `/ticket?numeroMesa=${numeroMesa}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
+        window.location.href = `/ticket?numeroMesa=${numeroMesa}&opciones=${opciones}&formaPago=${formaPago}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
       })
       .catch(error => {
         console.error('Error al realizar la compra:', error);
@@ -57,8 +69,8 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
 
   return (
     <div>
-      <div>
-      <Table striped bordered hover variant="dark" className="transparent-table" style={{ maxWidth: '500px', overflowX: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <table className="table" style={{ maxWidth: '500px', overflowX: 'auto', tableLayout: 'auto' }}>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -70,11 +82,13 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
             {pedidos.map((pedido, index) => (
               <tr key={index}>
                 <td>{pedido.nombre}</td>
-                <td>{pedido.precio}</td>
-                <td>
+                <td>{pedido.precio}€</td>
+                <td className="align-middle" style={{ textAlign: 'center', verticalAlign: 'top' }}>
+                <div style={{ marginTop: '-60px', display: 'flex', justifyContent: 'center' }}>
                   <Button variant="danger" size="sm" onClick={() => handleEliminarPedido(index)}>
-                    -
+                  -
                   </Button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -82,7 +96,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
           <tfoot>
             <tr>
               <td colSpan="2">Total</td>
-              <td>{calcularTotal()}</td>
+              <td style={{display:'flex', justifyContent:'center'}}>{calcularTotal()}€</td>
             </tr>
             <tr>
               <td colSpan="3" style={{ textAlign: 'center' }}>
@@ -97,21 +111,27 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                     }
                   }}
                 />
-              </td>
-            </tr>
-            <tr>
-            <td colSpan="3" style={{ textAlign: 'center' }}>
-              <Button variant="primary" size="sm" onClick={handleComprar}>
-                <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Pedir
-                </Link>
-              </Button>
+                <Form.Select value={1} onChange={handleOpcionesChange} style={{ marginTop: '5px' }}>
+                  <option value="tomar">Tomar</option>
+                  <option value="llevar">Llevar</option>
+                </Form.Select>
+                <Form.Select value={formaPago} onChange={handleFormaPagoChange} style={{ marginTop: '5px' }}>
+                  <option value="tarjeta">Tarjeta</option>
+                  <option value="efectivo">Efectivo</option>
+                </Form.Select>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-55px' }}>
+                  <Button variant="primary" size="sm" onClick={handlePedir}>
+                    <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      Pedir
+                    </Link>
+                  </Button>
+                </div>
             </td>
-            </tr>
-          </tfoot>
-        </Table>
-      </div>
+          </tr>
+        </tfoot>
+      </table>
     </div>
+  </div>
   );
 };
 
