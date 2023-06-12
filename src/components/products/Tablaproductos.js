@@ -133,64 +133,65 @@ const TablaProductos = ({ agregarPedido }) => {
     }
   };
   
-
   const productosFiltrados = filtroRol
     ? productos.filter((producto) => producto.categoriaRol === filtroRol)
     : productos;
 
   return (
     <div>
-      <div className="filtro-roles d-flex">
+      <div className="filtro-roles" style={{ width: '100%', justifyContent: 'center' }}>
         <BotonCategoria nombre="PRINCIPALES" onClick={() => filtrarProductosPorRol('PRINCIPALES')} />
         <BotonCategoria nombre="ENTRANTES" onClick={() => filtrarProductosPorRol('ENTRANTES')} />
         <BotonCategoria nombre="POSTRES" onClick={() => filtrarProductosPorRol('POSTRES')} />
         <BotonCategoria nombre="BEBIDAS" onClick={() => filtrarProductosPorRol('BEBIDAS')} />
       </div>
-      <Table striped bordered hover variant="dark" className="transparent-table">
+      <div  className="tabla-productos-container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <table className="table">
         <thead>
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
             <th>Imagen</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {productosFiltrados.map((producto) => (
             <tr key={producto.id}>
               <td>{producto.nombre}</td>
-              <td>{producto.precio}</td>
+              <td>{producto.precio}€</td>
               <td>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <img
                     src={obtenerImagenProducto(producto.id)}
                     alt={producto.nombre}
-                    style={{ width: '100px', height: '100px', animation: 'none' }}
-                  />
-                  <div style={{ marginLeft: '10px', display: 'flex', alignItems: 'center' }}>
-                    <button
-                      style={{
-                        marginRight: '5px',
-                        borderRadius: '50%',
-                        width: '30px',
-                        height: '30px',
-                        backgroundColor: 'lightgreen',
-                        border: 'none',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                      }}
-                      onClick={() => agregarProductoPedido(producto)}
-                    >
-                      +
-                    </button>
-
-                  </div>
+                    style={{ width: '100px', height: '100px', animation: 'none' }}/>
                 </div>
               </td>
+              <td>
+                <div style={{ marginTop:'-30px', marginLeft: '10px', display: 'flex', alignItems: 'center' }}>
+                  <button
+                    style={{
+                      marginRight: '5px',
+                      borderRadius: '50%',
+                      width: '30px',
+                      height: '30px',
+                      backgroundColor: 'lightgreen',
+                      border: 'none',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
+                    onClick={() => agregarProductoPedido(producto)}>
+                    +
+                  </button>
+                </div>
+              </td>  
             </tr>
           ))}
         </tbody>
-      </Table>
+      </table>
+      </div>
     </div>
   );
 };
