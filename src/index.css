@@ -351,32 +351,33 @@ code {
   
 }*/
 
-/************ Crear Producto Css ************/
+/**** Crear Producto Css ****/
 
 
-.excel-table {
+.excel-tableproducts {
   border-collapse: collapse;
   width: 100%;
   margin: 0 auto;
 }
 
-.excel-table th,
-.excel-table td {
+.excel-tableproducts th,
+.excel-tableproducts td {
   border: 1px solid black;
-  padding: 8px;
+  padding: 8px 50px;
   text-align: left;
 }
 
-.excel-table th {
+.excel-tableproducts th {
   background-color: #f2f2f2;
 }
 
-.table-container {
+.table-containerproducts {
   background-color: white;
   margin-top: 70px; /* Ajusta el margen superior según sea necesario */
   border: 1px solid black;
-  overflow: auto;
   max-height: 400px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .button-container {
@@ -400,14 +401,44 @@ code {
   cursor: pointer;
 }
 
-.excel-table td.acciones {
+.excel-tableproducts td.acciones {
   white-space: nowrap;
   max-width: 0;
   padding: 0;
+  margin: 0;
 }
 
-.excel-table td.acciones button {
+.excel-tableproducts td.acciones button {
   margin-right: 5px;
+}
+
+.acciones {
+  padding: 0;
+  margin: 0;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.25rem;
+  border: none;
+  background-color: #f2f2f2;
+  color: #333;
+  cursor: pointer;
+}
+
+.pagination-button.active {
+  background-color: #666;
+  color: #fff;
+}
+
+.containerproducts {
+  margin: 0 20px; /* Agrega margen a los lados según sea necesario */
 }
 
 /************ Facturas Css ************/
