@@ -71,7 +71,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
 
   return (
     <div>
-      <div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <Table striped bordered hover variant="dark" className="transparent-table" style={{ maxWidth: '500px', overflowX: 'auto' }}>
           <thead>
             <tr>
@@ -111,19 +111,21 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                     }
                   }}
                 />
-                <Form.Select value={1} onChange={handleOpcionesChange} style={{ marginTop: '10px' }}>
+                <Form.Select value={1} onChange={handleOpcionesChange} style={{ marginTop: '5px' }}>
                   <option value="tomar">Tomar</option>
                   <option value="llevar">Llevar</option>
                 </Form.Select>
-                <Form.Select value={formaPago} onChange={handleFormaPagoChange} style={{ marginTop: '10px' }}>
+                <Form.Select value={formaPago} onChange={handleFormaPagoChange} style={{ marginTop: '5px' }}>
                   <option value="tarjeta">Tarjeta</option>
                   <option value="efectivo">Efectivo</option>
                 </Form.Select>
-                <Button variant="primary" size="sm" onClick={handlePedir} style={{ marginTop: '10px' }}>
-                <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Pedir
-                </Link>
-              </Button>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}>
+                  <Button variant="primary" size="sm" onClick={handlePedir}>
+                    <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      Pedir
+                    </Link>
+                  </Button>
+                </div>
             </td>
           </tr>
         </tfoot>
