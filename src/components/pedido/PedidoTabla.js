@@ -38,8 +38,6 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
     const opcion = opciones;
     const pago = formaPago;
 
-    console.log(opcion)
-
     // Convierte la lista de productos en una cadena JSON
     const listaProductosJSON = JSON.stringify(listaProductos);
 
@@ -72,7 +70,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
   return (
     <div>
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-      <Table striped bordered hover variant="dark" className="transparent-table" style={{ maxWidth: '500px', overflowX: 'auto' }}>
+      <table className="table" style={{ maxWidth: '500px', overflowX: 'auto', tableLayout: 'auto' }}>
           <thead>
             <tr>
               <th>Nombre</th>
@@ -84,11 +82,13 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
             {pedidos.map((pedido, index) => (
               <tr key={index}>
                 <td>{pedido.nombre}</td>
-                <td>{pedido.precio}</td>
-                <td>
+                <td>{pedido.precio}€</td>
+                <td className="align-middle" style={{ textAlign: 'center', verticalAlign: 'top' }}>
+                <div style={{ marginTop: '-60px', display: 'flex', justifyContent: 'center' }}>
                   <Button variant="danger" size="sm" onClick={() => handleEliminarPedido(index)}>
-                    -
+                  -
                   </Button>
+                  </div>
                 </td>
               </tr>
             ))}
@@ -96,7 +96,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
           <tfoot>
             <tr>
               <td colSpan="2">Total</td>
-              <td>{calcularTotal()}</td>
+              <td style={{display:'flex', justifyContent:'center'}}>{calcularTotal()}€</td>
             </tr>
             <tr>
               <td colSpan="3" style={{ textAlign: 'center' }}>
@@ -119,7 +119,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                   <option value="tarjeta">Tarjeta</option>
                   <option value="efectivo">Efectivo</option>
                 </Form.Select>
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '5px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-55px' }}>
                   <Button variant="primary" size="sm" onClick={handlePedir}>
                     <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       Pedir
@@ -129,7 +129,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
             </td>
           </tr>
         </tfoot>
-      </Table>
+      </table>
     </div>
   </div>
   );
