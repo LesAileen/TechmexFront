@@ -116,7 +116,9 @@ const CrearProducto = () => {
   return (
     <>
       <div className="containerproducts">
-        <h2>Crear Producto</h2>
+        <h2 style={{marginTop:'20px', textAlign:'center', backgroundColor:'white', color:'#452404'}}>
+          Crear Producto
+        </h2>
         <div className="table-containerproducts">
           <table className="excel-tableproducts">
             <thead>
