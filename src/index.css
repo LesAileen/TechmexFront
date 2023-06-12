@@ -16,7 +16,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/img/fondo.png');*/
+  background-image: url('./assets/fondo/fondo2.jpg');
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -74,7 +74,6 @@ code {
 .banner {
   margin-top: 0;
   padding: 260px 0 800px 0;
-  background-image: url('./assets/img/fondo.png');
   background-position: top center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -149,7 +148,7 @@ code {
 .footer {
   padding: 0 0 10px 0;
   min-height: 70px;
-  background-color: #191919;
+  background-color: #452404;
   border-top: 1px solid rgba(50, 50, 50, 0.3);
   width: 100%;
   position: fixed;
