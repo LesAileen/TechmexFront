@@ -6,6 +6,8 @@ import Ticket from '../ticket/Ticket';
 const PedidoTabla = ({ pedidos, eliminarPedido}) => {
   const [cantidad, setCantidad] = useState(''); // Estado para almacenar la cantidad
   const [numeroMesa, setNumeroMesa] = useState('');// Estado para almacenar el número de mesa
+  const [opciones, setOpciones] = useState('tomar');
+  const [formaPago, setFormaPago] = useState('tarjeta');
 
   const handleEliminarPedido = (index) => {
     eliminarPedido(index);
@@ -22,15 +24,27 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
     }
   };
 
-  const handleComprar = () => {
+  const handleOpcionesChange = (e) => {
+    setOpciones(e.target.value);
+  };
+
+  const handleFormaPagoChange = (e) => {
+    setFormaPago(e.target.value);
+  };
+
+  const handlePedir = () => {
     const total = calcularTotal();
     const listaProductos = pedidos.map((pedido) => pedido.nombre);
+    const opcion = opciones;
+    const pago = formaPago;
+
+    console.log(opcion)
 
     // Convierte la lista de productos en una cadena JSON
     const listaProductosJSON = JSON.stringify(listaProductos);
 
     // Realiza el PUT y luego redirige a la página del ticket
-    fetch(`http://localhost:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}`, {
+    fetch(`http://localhost:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}&formaPago=${pago}&opciones=${opcion}`, {
       method: 'PUT'
     })
       .then(response => response.json())
@@ -38,7 +52,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
         console.log('Compra realizada exitosamente');
         // Realizar acciones adicionales si es necesario
         // Redirige a la página del ticket
-        window.location.href = `/ticket?numeroMesa=${numeroMesa}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
+        window.location.href = `/ticket?numeroMesa=${numeroMesa}&opciones=${opciones}&formaPago=${formaPago}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
       })
       .catch(error => {
         console.error('Error al realizar la compra:', error);
@@ -97,21 +111,25 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                     }
                   }}
                 />
-              </td>
-            </tr>
-            <tr>
-            <td colSpan="3" style={{ textAlign: 'center' }}>
-              <Button variant="primary" size="sm" onClick={handleComprar}>
+                <Form.Select value={1} onChange={handleOpcionesChange} style={{ marginTop: '10px' }}>
+                  <option value="tomar">Tomar</option>
+                  <option value="llevar">Llevar</option>
+                </Form.Select>
+                <Form.Select value={formaPago} onChange={handleFormaPagoChange} style={{ marginTop: '10px' }}>
+                  <option value="tarjeta">Tarjeta</option>
+                  <option value="efectivo">Efectivo</option>
+                </Form.Select>
+                <Button variant="primary" size="sm" onClick={handlePedir} style={{ marginTop: '10px' }}>
                 <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                   Pedir
                 </Link>
               </Button>
             </td>
-            </tr>
-          </tfoot>
-        </Table>
-      </div>
+          </tr>
+        </tfoot>
+      </Table>
     </div>
+  </div>
   );
 };
 
