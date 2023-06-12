@@ -122,7 +122,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                   <option value="efectivo">Efectivo</option>
                 </Form.Select>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-55px' }}>
-                  <Button className= "botonPedir"style={{ backgroundColor: '#ae5618', border: 'none'}}size="sm" onClick={handlePedir} disabled={!isPedidoValido}>
+                  <Button className= "botonPedir" style={{ backgroundColor: '#ae5618', border: 'none'}} size="sm" onClick={handlePedir} disabled={!isPedidoValido}>
                     <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       Pedir
                     </Link>

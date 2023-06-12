@@ -183,7 +183,9 @@ const CrearProducto = () => {
           </table>
         </div>
         <div className="button-container">
-          <button onClick={abrirModal}>Agregar Producto</button>
+          <button className="butonAgregarProducto" style={{color: 'white', backgroundColor: '#308446', border: 'none'}} onClick={abrirModal}>
+            Agregar Producto
+          </button>
         </div>
         <div className="pagination-container">
           {Array.from({ length: Math.ceil(productos.length / productosPorPagina) }, (_, index) => (

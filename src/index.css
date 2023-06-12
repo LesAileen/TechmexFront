@@ -441,6 +441,11 @@ code {
   margin: 0 20px; /* Agrega margen a los lados según sea necesario */
 }
 
+.butonAgregarProducto {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+}
+
 /************ Facturas Css ************/
 
 .facturas-page {

@@ -131,20 +131,20 @@ function Login() {
           <Navbar />
           <Box sx={{ paddingTop: "64px" }}>
             <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Button variant="contained" onClick={() => handleComponentChange("registrarEmpleado")}>
+              <Button variant="contained" style={{ marginTop: '10px',backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("registrarEmpleado")}>
                 Registrar empleados
               </Button>
-              <Button variant="contained" onClick={() => handleComponentChange("facturas")}>
+              <Button variant="contained" style={{ marginTop: '10px', backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("facturas")}>
                 Facturas
               </Button>
-              <Button variant="contained" onClick={() => handleComponentChange("crearProducto")}>
+              <Button variant="contained" style={{ marginTop: '10px', backgroundColor: '#896144', border: 'none'}} onClick={() => handleComponentChange("crearProducto")}>
                 Crear producto
               </Button>
             </Box>
             {activeComponent === "registrarEmpleado" && <RegistrarEmpleado />}
             {activeComponent === "facturas" && <Facturas />}
             {activeComponent === "crearProducto" && <CrearProducto />}
-            <Button variant="contained" onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
+            <Button variant="contained" style={{ backgroundColor: '#896144', border: 'none'}} onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
               Cerrar sesión
             </Button>
           </Box>
