@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import carrito from "../../assets/img/CarritoDeLaCompra.jpg";
 
 const pages = ["Registar empleados", "Facturas", "Añadir Productos"];
 
