@@ -444,26 +444,6 @@ code {
 
 /************ Facturas Css ************/
 
-.facturas-page {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-
-  align-items: center;
-  height: 100vh; /* Ajusta la altura del contenedor según el tamaño de la ventana */
-  position: relative; /* Asegura que los elementos posicionados dentro del contenedor se ajusten correctamente */
-}
-
-.facturas-container {
-  width: 90%;
-  max-width: 1200px; /* Opcional: limita el ancho máximo del contenedor */
-}
-
-.title-facturas {
-  margin-top: 100px; /* Ajusta el margen superior para evitar que se sobreponga al Navbar */
-  margin-bottom: 30px; /* Ajusta el margen inferior para agregar más espacio */
-}
-
 .generate-button {
   position: absolute; /* Permite posicionar el botón de manera absoluta dentro del contenedor */
   top: 130px; /* Ajusta la posición vertical del botón */
@@ -491,8 +471,10 @@ code {
 
 .filters {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .filter label {
@@ -501,6 +483,7 @@ code {
 
 .filter input,
 .filter select {
+  margin-top: 20px;
   padding: 5px;
 }
 
@@ -529,6 +512,12 @@ code {
 
 .pagination button.active {
   background-color: #ddd;
+}
+
+.grafica-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 /************ Ticket Css ************/

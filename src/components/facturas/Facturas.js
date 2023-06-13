@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
 import axios from 'axios';
+import Grafica from "./Grafica";
 
 function Facturas() {
   const [facturas, setFacturas] = useState([]);
@@ -10,52 +11,26 @@ function Facturas() {
   const [fechaInicial, setFechaInicial] = useState("");
   const [fechaFinal, setFechaFinal] = useState("");
   const [filteredFacturas, setFilteredFacturas] = useState([]);
+  const [ticketMedio, setTicketMedio] = useState(0);
 
   useEffect(() => {
     fetchFacturas();
   }, []);
 
+  useEffect(() => {
+    handleFilter();
+    calculateTicketMedio();
+  }, [fechaInicial, fechaFinal]);
+
   const fetchFacturas = async () => {
     try {
       const response = await axios.get("http://localhost:8090/facturas/lista");
+      console.log(response.data);
       setFacturas(response.data);
       setFilteredFacturas(response.data);
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const generateExampleFacturas = () => {
-    const exampleFacturas = [];
-
-    for (let i = 0; i < 100; i++) {
-      const currentDate = new Date();
-      const randomMonth = Math.floor(Math.random() * 12); // Generar un número aleatorio entre 0 y 11 para representar los meses (enero = 0, febrero = 1, etc.)
-      const randomDay = Math.floor(Math.random() * getDaysInMonth(currentDate.getFullYear(), randomMonth));
-      const randomYear = currentDate.getFullYear() - i;
-
-      const fecha = `${formatNumber(randomDay + 1)}/${formatNumber(randomMonth + 1)}/${randomYear}`;
-
-      const facturaId = i + 1;
-      const numeroMesa = i + 1;
-      const cliente = `Cliente ${i + 1}`;
-      const formaPago = `Pago ${i + 1}`;
-      const total = (i + 1) * 10;
-
-      exampleFacturas.push({
-        fecha,
-        facturaId,
-        numeroMesa,
-        cliente,
-        formaPago,
-        total,
-      });
-    }
-
-    exampleFacturas.sort((a, b) => new Date(b.fecha.split('/').reverse().join('-')) - new Date(a.fecha.split('/').reverse().join('-')));
-
-    setFacturas(exampleFacturas);
-    setFilteredFacturas(exampleFacturas);
   };
 
   const getDaysInMonth = (year, month) => {
@@ -66,9 +41,30 @@ function Facturas() {
     return number < 10 ? `0${number}` : number.toString();
   };
 
-  useEffect(() => {
-    generateExampleFacturas();
-  }, []);
+  const handleFilter = () => {
+    const filteredFacturas = facturas.filter((factura) => {
+      if (fechaInicial && fechaFinal) {
+        const fecha = new Date(factura.fecha);
+        const fechaFinalAdjusted = new Date(fechaFinal);
+        fechaFinalAdjusted.setDate(fechaFinalAdjusted.getDate() + 1); // Agregar un día a la fecha final
+        return fecha >= new Date(fechaInicial) && fecha < fechaFinalAdjusted;
+      }
+      return true;
+    });
+  
+    setFilteredFacturas(filteredFacturas);
+  };
+
+  const calculateTicketMedio = () => {
+    if (currentFacturas.length > 0) {
+      const totalSum = currentFacturas.reduce((sum, factura) => sum + factura.total, 0);
+      const ticketMedioValue = totalSum / currentFacturas.length;
+      const ticketMedioFormatted = ticketMedioValue.toFixed(2);
+      setTicketMedio(ticketMedioFormatted);
+    } else {
+      setTicketMedio(0);
+    }
+  };
 
   const indexOfLastFactura = currentPage * facturasPerPage;
   const indexOfFirstFactura = indexOfLastFactura - facturasPerPage;
@@ -89,7 +85,7 @@ function Facturas() {
   };
 
   const convertToCsv = (data) => {
-    const keys = Object.keys(data[0]);
+    const keys = Object.keys(data[0]).filter((key) => key !== "usuario_id"); // Filtrar la columna "usuario"
     const header = keys.join(",") + "\n";
     const rows = data.map((row) => {
       return keys.map((key) => {
@@ -99,30 +95,17 @@ function Facturas() {
     return header + rows;
   };
 
-  const handleFilter = () => {
-    const filteredFacturas = facturas.filter((factura) => {
-      if (fechaInicial && fechaFinal) {
-        const fecha = new Date(factura.fecha);
-        return fecha >= new Date(fechaInicial) && fecha <= new Date(fechaFinal);
-      }
-      return true;
-    });
-
-    setFilteredFacturas(filteredFacturas);
-  };
-
-  useEffect(() => {
-    handleFilter();
-  }, [fechaInicial, fechaFinal]);
-
   return (
-    <div className="facturas-page">
-      <div className="facturas-container">
+    <div className="container-facturas">
+      <div className="facturas-container" >
+        <div style={{backgroundColor:'#FFFFEB', color:'#452404', textAlign:'center', marginTop:'20px',marginLeft:'100px', marginRight:'100px'}}>
         <h1 className="title-facturas">Facturas</h1>
-        <button className="generate-button" onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
+        </div>
         <div className="filters">
           <div className="filter">
-            <label htmlFor="fechaInicial">Fecha inicial:</label>
+            <label style={{backgroundColor:'white', marginLeft:'20px', marginRight:'20px', color:'black', fontSize: '18px', border: '2px solid #452404'}} htmlFor="fechaInicial">
+              Fecha inicial:
+              </label>
             <input
               type="date"
               id="fechaInicial"
@@ -130,8 +113,10 @@ function Facturas() {
               onChange={(e) => setFechaInicial(e.target.value)}
             />
           </div>
-          <div className="filter">
-            <label htmlFor="fechaFinal">Fecha final:</label>
+          <div className="filter" style={{marginLeft:'50px', marginRight:'50px'}}>
+            <label style={{backgroundColor:'white', marginLeft:'20px', marginRight:'20px', color:'black', fontSize: '18px', border: '2px solid #452404'}} htmlFor="fechaFinal">
+              Fecha final:
+              </label>
             <input
               type="date"
               id="fechaFinal"
@@ -140,7 +125,9 @@ function Facturas() {
             />
           </div>
           <div className="filter">
-            <button onClick={exportToCsv}>Exportar a CSV</button>
+            <button style={{padding:'5px', marginLeft:'20px', marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404', fontSize: '18px'}} onClick={exportToCsv}>
+              Exportar a CSV
+            </button>
           </div>
         </div>
         <div className="table-container">
@@ -150,22 +137,28 @@ function Facturas() {
                 <th className="header-cell">Fecha</th>
                 <th className="header-cell">Factura Id</th>
                 <th className="header-cell">Numero de mesa</th>
-                <th className="header-cell">Cliente</th>
                 <th className="header-cell">Forma de pago</th>
                 <th className="header-cell">Total</th>
               </tr>
             </thead>
             <tbody>
-              {currentFacturas.map((factura) => (
-                <tr key={factura.facturaId}>
-                  <td className="cell">{factura.fecha}</td>
-                  <td className="cell">{factura.factura_id}</td>
-                  <td className="cell">{factura.num_mesa}</td>
-                  <td className="cell">{factura.usuario_id}</td>
-                  <td className="cell">{factura.formasPago}</td>
-                  <td className="cell">{factura.total}</td>
-                </tr>
-              ))}
+              {currentFacturas.map((factura) => {
+                const fecha = new Date(factura.fecha);
+                const dia = fecha.getDate();
+                const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+                const anio = fecha.getFullYear();
+                const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+                return (
+                  <tr key={factura.facturaId}>
+                    <td className="cell">{fechaFormateada}</td>
+                    <td className="cell">{factura.factura_id}</td>
+                    <td className="cell">{factura.num_mesa}</td>
+                    <td className="cell">{factura.formasPago}</td>
+                    <td className="cell">{factura.total}€</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -179,6 +172,9 @@ function Facturas() {
             />
           )}
         </div>
+      </div>
+      <div className="grafica-container">
+        <Grafica datos={facturas} ticketMedio={ticketMedio} />
       </div>
     </div>
   );
