@@ -113,7 +113,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                     }
                   }}
                 />
-                <Form.Select value={1} onChange={handleOpcionesChange} style={{ marginTop: '5px' }}>
+                <Form.Select value={opciones} onChange={handleOpcionesChange} style={{ marginTop: '5px' }}>
                   <option value="tomar">Tomar</option>
                   <option value="llevar">Llevar</option>
                 </Form.Select>

@@ -76,7 +76,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
               textDecoration: "none",
             }}
           >
-            Texchmex
+            Techmex
           </Typography>
 
           {isLoggedIn && (

@@ -192,7 +192,7 @@ function Login() {
                 justifyContent: "center",
               }}
             >
-              Texchmex
+              Techmex
             </Typography>
 
             <Box
