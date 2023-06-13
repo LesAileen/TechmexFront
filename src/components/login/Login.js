@@ -258,7 +258,7 @@ function Login() {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link style={{color:'black', textDecoration: 'none'}} href="/Register" variant="body2">
+                  <Link style={{color:'black', textDecoration: 'none'}} to="/Register" variant="body2">
                     {"¿No tienes una cuenta? Registrarse"}
                   </Link>
                 </Grid>

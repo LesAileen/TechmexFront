@@ -9,6 +9,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
+import { Link } from "react-router-dom";
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -153,9 +154,11 @@ function Register() {
                 color: "white",
               }}
             />
+            <Link to="/Login">
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor:'#896144'}}>
               Registarse
             </Button>
+            </Link>
           </form>
         </Box>
       </Container>
