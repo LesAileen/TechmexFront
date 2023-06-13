@@ -98,7 +98,7 @@ function Facturas() {
   return (
     <div className="container-facturas">
       <div className="facturas-container" >
-        <div style={{backgroundColor:'#FFFFEB', textAlign:'center', marginTop:'20px',marginLeft:'100px', marginRight:'100px'}}>
+        <div style={{backgroundColor:'#FFFFEB', color:'#452404', textAlign:'center', marginTop:'20px',marginLeft:'100px', marginRight:'100px'}}>
         <h1 className="title-facturas">Facturas</h1>
         </div>
         <div className="filters">
@@ -142,15 +142,23 @@ function Facturas() {
               </tr>
             </thead>
             <tbody>
-              {currentFacturas.map((factura) => (
-                <tr key={factura.facturaId}>
-                  <td className="cell">{factura.fecha}</td>
-                  <td className="cell">{factura.factura_id}</td>
-                  <td className="cell">{factura.num_mesa}</td>
-                  <td className="cell">{factura.formasPago}</td>
-                  <td className="cell">{factura.total}€</td>
-                </tr>
-              ))}
+              {currentFacturas.map((factura) => {
+                const fecha = new Date(factura.fecha);
+                const dia = fecha.getDate();
+                const mes = (fecha.getMonth() + 1).toString().padStart(2, "0");
+                const anio = fecha.getFullYear();
+                const fechaFormateada = `${dia}/${mes}/${anio}`;
+
+                return (
+                  <tr key={factura.facturaId}>
+                    <td className="cell">{fechaFormateada}</td>
+                    <td className="cell">{factura.factura_id}</td>
+                    <td className="cell">{factura.num_mesa}</td>
+                    <td className="cell">{factura.formasPago}</td>
+                    <td className="cell">{factura.total}€</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
