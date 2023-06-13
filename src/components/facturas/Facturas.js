@@ -97,7 +97,7 @@ function Facturas() {
               onChange={(e) => setFechaInicial(e.target.value)}
             />
           </div>
-          <div className="filter">
+          <div className="filter" style={{marginLeft:'50px', marginRight:'50px'}}>
             <label style={{backgroundColor:'white', marginLeft:'20px', marginRight:'20px', color:'black', fontSize: '18px', border: '2px solid #452404'}} htmlFor="fechaFinal">
               Fecha final:
               </label>
@@ -109,7 +109,7 @@ function Facturas() {
             />
           </div>
           <div className="filter">
-            <button style={{marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404', fontSize: '18px'}} onClick={exportToCsv}>
+            <button style={{padding:'5px', marginLeft:'20px', marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404', fontSize: '18px'}} onClick={exportToCsv}>
               Exportar a CSV
             </button>
           </div>
@@ -149,7 +149,9 @@ function Facturas() {
           )}
         </div>
       </div>
-      <Grafica datos={facturas} />
+      <div className="grafica-container">
+        <Grafica datos={facturas} />
+      </div>
     </div>
   );
 }

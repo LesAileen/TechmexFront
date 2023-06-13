@@ -471,7 +471,8 @@ code {
 
 .filters {
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Centra los elementos horizontalmente */
+  align-items: center; /* Centra los elementos verticalmente */
   margin-bottom: 20px;
   margin-top: 20px;
 }
@@ -511,6 +512,12 @@ code {
 
 .pagination button.active {
   background-color: #ddd;
+}
+
+.grafica-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
 /************ Ticket Css ************/
