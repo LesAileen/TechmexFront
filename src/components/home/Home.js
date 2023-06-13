@@ -11,9 +11,15 @@ function Home() {
       <div className="home-container">
         <div className="content-containerhome">
           <div className="centered-texthome">
-          <h1 className="text-black">TECHMEX</h1>
-          <Link to="/Banner">
-              <button className="start-order-buttonhome">Iniciar Pedido</button>
+            <div style={{backgroundColor:'#FFFFEB'}}>
+              <h1 className="text-inicio" style={{color:'#452404', marginLeft:'10px', marginRight:'10px'}}>
+                TECHMEX
+              </h1>
+            </div>
+            <Link to="/Banner">
+              <button className="start-order-buttonhome" style={{marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404'}}>
+                Iniciar Pedido
+              </button>
             </Link>
           </div>
         </div>

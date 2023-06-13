@@ -76,7 +76,6 @@ function RegistrarEmpleado() {
             fontFamily="Digitalism"
             noWrap
             component="a"
-            href="/"
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
