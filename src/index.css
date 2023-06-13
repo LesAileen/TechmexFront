@@ -443,7 +443,10 @@ code {
 }
 
 /************ Facturas Css ************/
-
+.container-facturas {
+  max-height: calc(100vh - 300px); /* Ajusta la altura máxima de la tabla según el tamaño de la pantalla */
+  overflow-y: auto;
+}
 .generate-button {
   position: absolute; /* Permite posicionar el botón de manera absoluta dentro del contenedor */
   top: 130px; /* Ajusta la posición vertical del botón */
@@ -451,8 +454,7 @@ code {
 }
 
 .table-container {
-  max-height: calc(100vh - 300px); /* Ajusta la altura máxima de la tabla según el tamaño de la pantalla */
-  overflow-y: auto;
+  
   display: flex;
   justify-content: center;
   margin-top: 30px; /* Ajusta el margen superior para agregar más espacio */
@@ -490,7 +492,7 @@ code {
 .pagination {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 0px;
 }
 
 .pagination ul {
@@ -517,7 +519,7 @@ code {
 .grafica-container {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 /************ Ticket Css ************/
