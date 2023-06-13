@@ -160,7 +160,7 @@ function Login() {
         <Navbar />
         <Box sx={{ paddingTop: "64px"}}>
         <div style={{textAlign:'center', marginTop:'150px'}}>
-          <img src={ImagenInicio} alt="Imagen de inicio" />
+          <img src={ImagenInicio} alt="Imagen de inicio" style={{ borderRadius: '50%' }}/>
         </div>
         <div style={{backgroundColor:'#FFFFEB', marginTop:'10px', marginLeft:'100px', marginRight:'100px',textAlign:'center'}}>            
           <h1 style={{color:'#452404'}}>

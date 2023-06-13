@@ -54,6 +54,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
         console.error('Error al realizar la compra:', error);
         // Realizar acciones adicionales si es necesario
       });
+      window.location.reload();
   };
 
   // Función para calcular el total de los precios de los productos
