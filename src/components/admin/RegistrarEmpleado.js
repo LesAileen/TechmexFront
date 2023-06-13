@@ -82,7 +82,7 @@ function RegistrarEmpleado() {
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "#452404",
               textDecoration: "none",
               alignItems: "center",
               justifyContent: "center",
