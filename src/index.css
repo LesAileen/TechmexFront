@@ -473,6 +473,7 @@ code {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .filter label {
@@ -481,6 +482,7 @@ code {
 
 .filter input,
 .filter select {
+  margin-top: 20px;
   padding: 5px;
 }
 

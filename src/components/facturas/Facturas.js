@@ -82,12 +82,14 @@ function Facturas() {
   return (
     <div className="container-facturas">
       <div className="facturas-container" >
-        <div style={{backgroundColor:'white', textAlign:'center', marginLeft:'100px', marginRight:'100px'}}>
+        <div style={{backgroundColor:'#FFFFEB', textAlign:'center', marginTop:'20px',marginLeft:'100px', marginRight:'100px'}}>
         <h1 className="title-facturas">Facturas</h1>
         </div>
         <div className="filters">
           <div className="filter">
-            <label htmlFor="fechaInicial">Fecha inicial:</label>
+            <label style={{backgroundColor:'white', marginLeft:'20px', marginRight:'20px', color:'black', fontSize: '18px', border: '2px solid #452404'}} htmlFor="fechaInicial">
+              Fecha inicial:
+              </label>
             <input
               type="date"
               id="fechaInicial"
@@ -96,7 +98,9 @@ function Facturas() {
             />
           </div>
           <div className="filter">
-            <label htmlFor="fechaFinal">Fecha final:</label>
+            <label style={{backgroundColor:'white', marginLeft:'20px', marginRight:'20px', color:'black', fontSize: '18px', border: '2px solid #452404'}} htmlFor="fechaFinal">
+              Fecha final:
+              </label>
             <input
               type="date"
               id="fechaFinal"
@@ -105,7 +109,9 @@ function Facturas() {
             />
           </div>
           <div className="filter">
-            <button onClick={exportToCsv}>Exportar a CSV</button>
+            <button style={{marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404', fontSize: '18px'}} onClick={exportToCsv}>
+              Exportar a CSV
+            </button>
           </div>
         </div>
         <div className="table-container">
@@ -115,7 +121,6 @@ function Facturas() {
                 <th className="header-cell">Fecha</th>
                 <th className="header-cell">Factura Id</th>
                 <th className="header-cell">Numero de mesa</th>
-                <th className="header-cell">Cliente</th>
                 <th className="header-cell">Forma de pago</th>
                 <th className="header-cell">Total</th>
               </tr>
@@ -126,9 +131,8 @@ function Facturas() {
                   <td className="cell">{factura.fecha}</td>
                   <td className="cell">{factura.factura_id}</td>
                   <td className="cell">{factura.num_mesa}</td>
-                  <td className="cell">{factura.usuario_id}</td>
                   <td className="cell">{factura.formasPago}</td>
-                  <td className="cell">{factura.total}</td>
+                  <td className="cell">{factura.total}€</td>
                 </tr>
               ))}
             </tbody>
