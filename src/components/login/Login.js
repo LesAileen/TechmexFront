@@ -180,19 +180,18 @@ function Login() {
               fontFamily="Digitalism"
               noWrap
               component="a"
-              href="/"
               sx={{
                 flexGrow: 1,
                 display: { xs: "none", md: "flex" },
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "#452404",
                 textDecoration: "none",
                 alignItems: "center",
                 justifyContent: "center",
               }}
             >
-              Texchmex
+              Techmex
             </Typography>
 
             <Box
@@ -246,13 +245,13 @@ function Login() {
               </Button>
               <Grid container>
                 <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Olvidó la contraseña?
+                  <Link style={{color:'black', textDecoration: 'none'}} href="#" variant="body2">
+                    ¿Olvidó la contraseña?
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="/Register" variant="body2">
-                    {"No tienes una cuenta? Registrarse"}
+                  <Link style={{color:'black', textDecoration: 'none'}} href="/Register" variant="body2">
+                    {"¿No tienes una cuenta? Registrarse"}
                   </Link>
                 </Grid>
               </Grid>

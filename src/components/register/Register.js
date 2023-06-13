@@ -67,22 +67,24 @@ function Register() {
   return (
     <div>
       <Navbar />
+      <div className="register-container" style={{ marginTop: "80px", display: "flex", justifyContent: "center" }}>
+      <table style={{marginTop:'30px', backgroundColor:'white'}}>
       <Container className="ContainerRegister" component="main" maxWidth="xs">
-        <Box sx={{ paddingTop: "64px" }}>
+        <Box sx={{ paddingTop: "30px", textAlign: "center"}}>     
           <Typography
             variant="h3"
             fontFamily="Digitalism"
             noWrap
             component="a"
-            href="/"
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "#452404",
               textDecoration: "none",
               alignItems: "center",
+              justifyContent: "center",
             }}
           >
             REGISTRO
@@ -151,12 +153,14 @@ function Register() {
                 color: "white",
               }}
             />
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor:'#896144'}}>
               Registarse
             </Button>
           </form>
         </Box>
       </Container>
+      </table>
+      </div>
       <Footer />
     </div>
   );

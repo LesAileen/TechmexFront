@@ -76,7 +76,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
               textDecoration: "none",
             }}
           >
-            Texchmex
+            Techmex
           </Typography>
 
           {isLoggedIn && (
@@ -150,7 +150,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
             </>
           )}
 
-          {!isLoggedIn && <Button href="/Login">Login</Button>}
+          {!isLoggedIn && <Button style={{color:'white'}}href="/Login">Login</Button>}
         </Toolbar>
       </Container>
     </AppBar>
