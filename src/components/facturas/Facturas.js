@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../home/Navbar";
 import Footer from "../home/Footer";
 import axios from 'axios';
+import Grafica from "./Grafica";
 
 function Facturas() {
   const [facturas, setFacturas] = useState([]);
@@ -116,9 +117,11 @@ function Facturas() {
   }, [fechaInicial, fechaFinal]);
 
   return (
-    <div className="facturas-page">
-      <div className="facturas-container">
+    <div className="container-facturas">
+      <div className="facturas-container" >
+        <div style={{backgroundColor:'white', textAlign:'center', marginLeft:'100px', marginRight:'100px'}}>
         <h1 className="title-facturas">Facturas</h1>
+        </div>
         <button className="generate-button" onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
         <div className="filters">
           <div className="filter">
@@ -180,6 +183,7 @@ function Facturas() {
           )}
         </div>
       </div>
+      <Grafica datos={facturas} />
     </div>
   );
 }
