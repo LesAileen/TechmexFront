@@ -47,8 +47,8 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
       .then(response => response.json())
       .then(data => {
         console.log('Compra realizada exitosamente');
-        window.location.reload();
         // Realizar acciones adicionales si es necesario
+        
       })
       .catch(error => {
         console.error('Error al realizar la compra:', error);

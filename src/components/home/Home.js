@@ -13,7 +13,7 @@ function Home() {
         <div className="content-containerhome">
           <div className="centered-texthome" style={{paddingTop:'5px'}}>
             <div>
-              <img src={ImagenInicio} alt="Imagen de inicio" />
+              <img src={ImagenInicio} alt="Imagen de inicio" style={{ borderRadius: '50%' }} />
             </div>
             <div style={{backgroundColor:'#FFFFEB', marginTop:'10px'}}>            
             <h1 className="text-inicio" style={{color:'#452404'}}>

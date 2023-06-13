@@ -150,7 +150,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
             </>
           )}
 
-          {!isLoggedIn && <Button style={{color:'white'}}href="/Login">Login</Button>}
+          {!isLoggedIn && <Button style={{color:'white'}}href="/Login">Login / User</Button>}
         </Toolbar>
       </Container>
     </AppBar>
