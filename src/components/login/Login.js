@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Container from "@mui/material/Container";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -14,6 +14,8 @@ import Footer from "../home/Footer";
 import RegistrarEmpleado from "../admin/RegistrarEmpleado";
 import Facturas from "../facturas/Facturas";
 import CrearProducto from "../products/CrearProducto";
+import ImagenInicio from "../../assets/fondo/inicio.jpg";
+import Banner from "../home/Banner"; 
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
@@ -155,15 +157,30 @@ function Login() {
 
     return (
       <div>
-        <p>USER</p>
-        <p>USER</p>
-        <p>USER</p>
-        <p>USER</p>
-        <p>USER</p>
-
-        <Button variant="contained" onClick={toggleLogin}>
-          Cerrar sesión
+        <Navbar />
+        <Box sx={{ paddingTop: "64px"}}>
+        <div style={{textAlign:'center', marginTop:'150px'}}>
+          <img src={ImagenInicio} alt="Imagen de inicio" style={{ borderRadius: '50%' }}/>
+        </div>
+        <div style={{backgroundColor:'#FFFFEB', marginTop:'10px', marginLeft:'100px', marginRight:'100px',textAlign:'center'}}>            
+          <h1 style={{color:'#452404'}}>
+            ¡BIENVENIDO!
+          </h1>
+        </div>
+        <div style={{textAlign:'center'}}>
+        <Link to="/Banner">
+          <button className="start-order-buttonhome" style={{marginTop:'10px', backgroundColor:'#ece2c6', borderColor:'#452404', color:'#452404'}}>
+            Iniciar Pedido
+          </button>
+        </Link>
+        </div>
+        <div style={{marginTop: '16px' }}>
+        <Button variant="contained" style={{ backgroundColor: '#896144', border: 'none'}} onClick={toggleLogin} sx={{ display: "block", margin: "16px auto" }}>
+            Cerrar sesión
         </Button>
+        </div>
+        </Box>
+        <Footer />
       </div>
     );
   }
@@ -230,10 +247,6 @@ function Login() {
                 autoComplete="current-password"
                 value={password}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Recordarme"
-              />
               <Button
                 type="submit"
                 fullWidth
@@ -244,11 +257,6 @@ function Login() {
                 Continuar
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link style={{color:'black', textDecoration: 'none'}} href="#" variant="body2">
-                    ¿Olvidó la contraseña?
-                  </Link>
-                </Grid>
                 <Grid item>
                   <Link style={{color:'black', textDecoration: 'none'}} href="/Register" variant="body2">
                     {"¿No tienes una cuenta? Registrarse"}

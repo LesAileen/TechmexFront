@@ -11,7 +11,6 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import carrito from "../../assets/img/CarritoDeLaCompra.jpg";
 
 const pages = ["Registar empleados", "Facturas", "Añadir Productos"];
 
@@ -150,7 +149,7 @@ const ResponsiveAppBar = ({ isLoggedIn }) => {
             </>
           )}
 
-          {!isLoggedIn && <Button style={{color:'white'}}href="/Login">Login</Button>}
+          {!isLoggedIn && <Button style={{color:'white'}}href="/Login">Login / User</Button>}
         </Toolbar>
       </Container>
     </AppBar>

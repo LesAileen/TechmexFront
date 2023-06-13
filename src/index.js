@@ -8,7 +8,6 @@ import Register from "./components/register/Register";
 import Login from "./components/login/Login";
 import RegistrarEmpleado from "./components/admin/RegistrarEmpleado";
 import CrearPrducto from "./components/products/CrearProducto";
-import Ticket from "./components/ticket/Ticket"
 import Facturas from "./components/facturas/Facturas";
 import Banner from './components/home/Banner';
 import reportWebVitals from './reportWebVitals';
@@ -25,7 +24,6 @@ root.render(
       <Route path="/Añadir productos" element={<CrearPrducto />}></Route>
       <Route path="/Registar empleados" element={<RegistrarEmpleado />}></Route>
       <Route path="/Facturas" element={<Facturas />}></Route>
-      <Route path="/Ticket" element={<Ticket />}></Route>
       <Route path="/Banner" element={<Banner />}></Route>
     </Routes>
   </BrowserRouter>

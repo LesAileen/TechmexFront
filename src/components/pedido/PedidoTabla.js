@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Table, Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Ticket from '../ticket/Ticket';
 
 const PedidoTabla = ({ pedidos, eliminarPedido}) => {
   const [cantidad, setCantidad] = useState(''); // Estado para almacenar la cantidad
@@ -49,13 +48,13 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
       .then(data => {
         console.log('Compra realizada exitosamente');
         // Realizar acciones adicionales si es necesario
-        // Redirige a la página del ticket
-        window.location.href = `/ticket?numeroMesa=${numeroMesa}&opciones=${opciones}&formaPago=${formaPago}&total=${total}&lista=${encodeURIComponent(listaProductosJSON)}`;
+        
       })
       .catch(error => {
         console.error('Error al realizar la compra:', error);
         // Realizar acciones adicionales si es necesario
       });
+      window.location.reload();
   };
 
   // Función para calcular el total de los precios de los productos
@@ -123,9 +122,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
                 </Form.Select>
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: '-55px' }}>
                   <Button className= "botonPedir" style={{ backgroundColor: '#ae5618', border: 'none'}} size="sm" onClick={handlePedir} disabled={!isPedidoValido}>
-                    <Link to={`/ticket?numeroMesa=${numeroMesa}`} style={{ color: 'inherit', textDecoration: 'none' }}>
                       Pedir
-                    </Link>
                   </Button>
                 </div>
             </td>

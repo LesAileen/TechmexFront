@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import headerImg from '../../assets/img/prueba.png';
 import TablaProductos from '../products/Tablaproductos';
 import BotonCategoria from '../categorias/BotonCategoria';
 import { ArrowRightCircle } from 'react-bootstrap-icons';

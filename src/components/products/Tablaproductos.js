@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Table from 'react-bootstrap/Table';
 import BotonCategoria from '../categorias/BotonCategoria';
-import ImagenTacoPrueba from '../../assets/img/Taco.png';
 import Nachos from '../../assets/entrantes/nachos.jpg';
 import Patatas from '../../assets/entrantes/patatas.png';
 import Chicken from '../../assets/entrantes/chicken.jpg';
@@ -129,7 +128,7 @@ const TablaProductos = ({ agregarPedido }) => {
         return Michelada;
       default:
         // Si no se encuentra una imagen correspondiente, puedes devolver una imagen predeterminada o una URL de imagen genérica
-        return ImagenTacoPrueba;
+        return;
     }
   };
   
