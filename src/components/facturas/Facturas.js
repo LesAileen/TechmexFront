@@ -85,7 +85,7 @@ function Facturas() {
   };
 
   const convertToCsv = (data) => {
-    const keys = Object.keys(data[0]);
+    const keys = Object.keys(data[0]).filter((key) => key !== "usuario_id"); // Filtrar la columna "usuario"
     const header = keys.join(",") + "\n";
     const rows = data.map((row) => {
       return keys.map((key) => {

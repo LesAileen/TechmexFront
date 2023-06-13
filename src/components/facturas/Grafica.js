@@ -8,9 +8,9 @@ const Grafica = ({ datos, ticketMedio}) => {
   }));
 
   return (
-    <div className="grafica" style={{backgroundColor:'white'}}>
+    <div className="grafica" style={{backgroundColor:'#FFFFEB'}}>
       <XYPlot width={1000} height={300} xType="ordinal">
-      <VerticalBarSeries data={data} />
+      <VerticalBarSeries data={data} color="#a25e2a"/>
       <XAxis
           tickLabelAngle={-45}
           hideTicks
