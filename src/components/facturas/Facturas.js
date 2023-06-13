@@ -26,39 +26,6 @@ function Facturas() {
     }
   };
 
-  const generateExampleFacturas = () => {
-    const exampleFacturas = [];
-
-    for (let i = 0; i < 100; i++) {
-      const currentDate = new Date();
-      const randomMonth = Math.floor(Math.random() * 12); // Generar un número aleatorio entre 0 y 11 para representar los meses (enero = 0, febrero = 1, etc.)
-      const randomDay = Math.floor(Math.random() * getDaysInMonth(currentDate.getFullYear(), randomMonth));
-      const randomYear = currentDate.getFullYear() - i;
-
-      const fecha = `${formatNumber(randomDay + 1)}/${formatNumber(randomMonth + 1)}/${randomYear}`;
-
-      const facturaId = i + 1;
-      const numeroMesa = i + 1;
-      const cliente = `Cliente ${i + 1}`;
-      const formaPago = `Pago ${i + 1}`;
-      const total = (i + 1) * 10;
-
-      exampleFacturas.push({
-        fecha,
-        facturaId,
-        numeroMesa,
-        cliente,
-        formaPago,
-        total,
-      });
-    }
-
-    exampleFacturas.sort((a, b) => new Date(b.fecha.split('/').reverse().join('-')) - new Date(a.fecha.split('/').reverse().join('-')));
-
-    setFacturas(exampleFacturas);
-    setFilteredFacturas(exampleFacturas);
-  };
-
   const getDaysInMonth = (year, month) => {
     return new Date(year, month + 1, 0).getDate();
   };
@@ -68,8 +35,20 @@ function Facturas() {
   };
 
   useEffect(() => {
-    generateExampleFacturas();
-  }, []);
+    handleFilter();
+  }, [fechaInicial, fechaFinal]);
+
+  const handleFilter = () => {
+    const filteredFacturas = facturas.filter((factura) => {
+      if (fechaInicial && fechaFinal) {
+        const fecha = new Date(factura.fecha);
+        return fecha >= new Date(fechaInicial) && fecha <= new Date(fechaFinal);
+      }
+      return true;
+    });
+
+    setFilteredFacturas(filteredFacturas);
+  };
 
   const indexOfLastFactura = currentPage * facturasPerPage;
   const indexOfFirstFactura = indexOfLastFactura - facturasPerPage;
@@ -100,29 +79,12 @@ function Facturas() {
     return header + rows;
   };
 
-  const handleFilter = () => {
-    const filteredFacturas = facturas.filter((factura) => {
-      if (fechaInicial && fechaFinal) {
-        const fecha = new Date(factura.fecha);
-        return fecha >= new Date(fechaInicial) && fecha <= new Date(fechaFinal);
-      }
-      return true;
-    });
-
-    setFilteredFacturas(filteredFacturas);
-  };
-
-  useEffect(() => {
-    handleFilter();
-  }, [fechaInicial, fechaFinal]);
-
   return (
     <div className="container-facturas">
       <div className="facturas-container" >
         <div style={{backgroundColor:'white', textAlign:'center', marginLeft:'100px', marginRight:'100px'}}>
         <h1 className="title-facturas">Facturas</h1>
         </div>
-        <button className="generate-button" onClick={generateExampleFacturas}>Generar facturas de ejemplo</button>
         <div className="filters">
           <div className="filter">
             <label htmlFor="fechaInicial">Fecha inicial:</label>
