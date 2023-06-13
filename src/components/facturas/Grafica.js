@@ -1,7 +1,7 @@
 import React from 'react';
 import { XYPlot, VerticalBarSeries, XAxis, YAxis } from 'react-vis';
 
-const Grafica = ({ datos }) => {
+const Grafica = ({ datos, ticketMedio}) => {
   const data = datos.map((factura) => ({
     x: factura.fecha,
     y: factura.total,
@@ -23,7 +23,7 @@ const Grafica = ({ datos }) => {
         />
       </XYPlot>
       <div className="grafica-title" style={{textAlign:'center', fontSize:'20px',marginTop:'-40px',padding:'15px'}}>
-        <span>Ticket Medio: </span>
+      <span>Ticket Medio: {ticketMedio}€</span>
       </div>
     </div>
   );

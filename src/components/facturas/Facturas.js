@@ -11,14 +11,21 @@ function Facturas() {
   const [fechaInicial, setFechaInicial] = useState("");
   const [fechaFinal, setFechaFinal] = useState("");
   const [filteredFacturas, setFilteredFacturas] = useState([]);
+  const [ticketMedio, setTicketMedio] = useState(0);
 
   useEffect(() => {
     fetchFacturas();
   }, []);
 
+  useEffect(() => {
+    handleFilter();
+    calculateTicketMedio();
+  }, [fechaInicial, fechaFinal]);
+
   const fetchFacturas = async () => {
     try {
       const response = await axios.get("http://localhost:8090/facturas/lista");
+      console.log(response.data);
       setFacturas(response.data);
       setFilteredFacturas(response.data);
     } catch (error) {
@@ -34,20 +41,29 @@ function Facturas() {
     return number < 10 ? `0${number}` : number.toString();
   };
 
-  useEffect(() => {
-    handleFilter();
-  }, [fechaInicial, fechaFinal]);
-
   const handleFilter = () => {
     const filteredFacturas = facturas.filter((factura) => {
       if (fechaInicial && fechaFinal) {
         const fecha = new Date(factura.fecha);
-        return fecha >= new Date(fechaInicial) && fecha <= new Date(fechaFinal);
+        const fechaFinalAdjusted = new Date(fechaFinal);
+        fechaFinalAdjusted.setDate(fechaFinalAdjusted.getDate() + 1); // Agregar un día a la fecha final
+        return fecha >= new Date(fechaInicial) && fecha < fechaFinalAdjusted;
       }
       return true;
     });
-
+  
     setFilteredFacturas(filteredFacturas);
+  };
+
+  const calculateTicketMedio = () => {
+    if (currentFacturas.length > 0) {
+      const totalSum = currentFacturas.reduce((sum, factura) => sum + factura.total, 0);
+      const ticketMedioValue = totalSum / currentFacturas.length;
+      const ticketMedioFormatted = ticketMedioValue.toFixed(2);
+      setTicketMedio(ticketMedioFormatted);
+    } else {
+      setTicketMedio(0);
+    }
   };
 
   const indexOfLastFactura = currentPage * facturasPerPage;
@@ -150,7 +166,7 @@ function Facturas() {
         </div>
       </div>
       <div className="grafica-container">
-        <Grafica datos={facturas} />
+        <Grafica datos={facturas} ticketMedio={ticketMedio} />
       </div>
     </div>
   );
