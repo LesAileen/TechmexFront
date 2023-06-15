@@ -40,7 +40,7 @@ function RegistrarEmpleado() {
     }
 
     try {
-      const url = new URL("http://localhost:8090/autentication/registerEmpleado");
+      const url = new URL("http://192.168.191.41:8090/autentication/registerEmpleado");
       url.searchParams.append("email", email);
       url.searchParams.append("user", user);
       url.searchParams.append("password", password);

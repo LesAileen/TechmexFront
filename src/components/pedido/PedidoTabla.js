@@ -41,7 +41,7 @@ const PedidoTabla = ({ pedidos, eliminarPedido}) => {
     const listaProductosJSON = JSON.stringify(listaProductos);
 
     // Realiza el PUT y luego redirige a la página del ticket
-    fetch(`http://localhost:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}&formaPago=${pago}&opciones=${opcion}`, {
+    fetch(`http://192.168.191.41:8090/pedido/comprar?total=${total}&numeroMesa=${numeroMesa}&lista=${encodeURIComponent(listaProductosJSON)}&formaPago=${pago}&opciones=${opcion}`, {
       method: 'PUT'
     })
       .then(response => response.json())

@@ -84,7 +84,7 @@ function Login() {
   };
 
   const login = (email, password) => {
-    fetch(`http://localhost:8090/autentication/login?email=${email}&password=${password}`)
+    fetch(`http://192.168.191.41:8090/autentication/login?email=${email}&password=${password}`)
       .then((response) => response.text())
       .then((data) => {
         if (data === "true") {
@@ -106,7 +106,7 @@ function Login() {
   };
 
   const checkAdmin = (email, password) => {
-    fetch(`http://localhost:8090/autentication/IsAdmin?email=${email}&password=${password}`)
+    fetch(`http://192.168.191.41:8090/autentication/IsAdmin?email=${email}&password=${password}`)
       .then((response) => response.text())
       .then((data) => {
         if (data === "true") {

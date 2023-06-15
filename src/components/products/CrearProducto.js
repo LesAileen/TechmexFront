@@ -19,7 +19,7 @@ const CrearProducto = () => {
 
   const obtenerProductos = async () => {
     try {
-      const response = await axios.get('http://localhost:8090/productos/lista');
+      const response = await axios.get('http://192.168.191.41:8090/productos/lista');
       setProductos(response.data);
     } catch (error) {
       console.error('Error al obtener la lista de productos:', error);
@@ -61,7 +61,7 @@ const CrearProducto = () => {
         categoria: encodeURIComponent(categoria)
       };
   
-      await axios.post('http://localhost:8090/productos/insertar', null, {
+      await axios.post('http://192.168.191.41:8090/productos/insertar', null, {
         params: params
       });
   
@@ -91,7 +91,7 @@ const CrearProducto = () => {
       setProductos(productos.filter(producto => producto.id !== id));
 
       // Realizar la solicitud de borrado al backend
-      await axios.delete(`http://localhost:8090/productos/borrar/${id}`);
+      await axios.delete(`http://192.168.191.41:8090/productos/borrar/${id}`);
     } catch (error) {
       console.error('Error al borrar el producto:', error);
     }

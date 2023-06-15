@@ -41,7 +41,7 @@ function Register() {
     }
 
     try {
-      const url = new URL("http://localhost:8090/autentication/register");
+      const url = new URL("http://192.168.191.41:8090/autentication/register");
       url.searchParams.append("email", email);
       url.searchParams.append("user", user);
       url.searchParams.append("password", password);
@@ -68,7 +68,7 @@ function Register() {
   return (
     <div>
       <Navbar />
-      <div className="register-container" style={{ marginTop: "80px", display: "flex", justifyContent: "center" }}>
+      <Box sx={{ paddingTop: "64px", display: "flex", justifyContent: "center" }}>
       <table style={{marginTop:'30px', backgroundColor:'white'}}>
       <Container className="ContainerRegister" component="main" maxWidth="xs">
         <Box sx={{ paddingTop: "30px", textAlign: "center"}}>     
@@ -161,7 +161,7 @@ function Register() {
         </Box>
       </Container>
       </table>
-      </div>
+      </Box>
       <Footer />
     </div>
   );

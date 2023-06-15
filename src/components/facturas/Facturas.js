@@ -24,7 +24,7 @@ function Facturas() {
 
   const fetchFacturas = async () => {
     try {
-      const response = await axios.get("http://localhost:8090/facturas/lista");
+      const response = await axios.get("http://192.168.191.41:8090/facturas/lista");
       console.log(response.data);
       setFacturas(response.data);
       setFilteredFacturas(response.data);

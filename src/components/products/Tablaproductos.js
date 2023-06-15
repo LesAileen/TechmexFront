@@ -44,7 +44,7 @@ const TablaProductos = ({ agregarPedido }) => {
 
   const obtenerProductos = async () => {
     try {
-      const response = await fetch('http://localhost:8090/productos/lista');
+      const response = await fetch('http://192.168.191.41:8090/productos/lista');
       const data = await response.json();
       setProductos(data);
     } catch (error) {

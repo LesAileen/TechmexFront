@@ -12,6 +12,7 @@ import Facturas from "./components/facturas/Facturas";
 import Banner from './components/home/Banner';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navbar } from 'react-bootstrap';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
